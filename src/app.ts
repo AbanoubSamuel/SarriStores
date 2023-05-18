@@ -9,6 +9,8 @@ import userRouter from './routes/v1/user.router';
 import authRouter from './routes/v1/auth.router';
 import { upload } from './middlewares/uploads';
 import { errorHandler } from './responses/error';
+import messageRouter from "./routes/v1/message.router";
+import blogRouter from "./routes/v1/blog.router";
 
 
 Joi.object = require('joi-objectid')(Joi);
@@ -34,14 +36,15 @@ app
 
 app.use(errorHandler)
     .use(express.json())
-
-    // .use(errorHandler)
     .use('/SarriStores/api/v1/auth', authRouter)
     .use('/SarriStores/api/v1/user', userRouter)
-    .use('/SarriStores/api/v1/blog', userRouter)
+    .use('/SarriStores/api/v1/blog', blogRouter)
+    .use('/SarriStores/api/v1/message', messageRouter)
     .use('/uploads', express.static('./uploads'))
-    .post('/SarriStores/api/v1/upload', upload.single('image'), (req, res) => {
-        res.status(200).send({filename: req.file?.filename});
+    .post('/SarriStores/api/v1/upload', upload.single('image'), (req, res) =>
+    {
+        res.status(200)
+            .send({filename: req.file?.filename});
     })
     .all('*', (req: Request, res: Response) =>
         res.status(404)

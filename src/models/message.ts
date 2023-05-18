@@ -1,13 +1,18 @@
 import { Document, Model, model, Schema } from 'mongoose';
 
-export interface IBlog extends Document {
+export interface IMessage extends Document {
     name: string;
+    email: string;
     text: string;
     createdAt: Date;
 }
 
-const blogSchema = new Schema({
+const messageSchema = new Schema({
     name: {
+        type: String,
+        required: true
+    },
+    email: {
         type: String,
         required: true
     },
@@ -21,4 +26,4 @@ const blogSchema = new Schema({
     },
 });
 
-export const Blog: Model<IBlog> = model<IBlog>('Blog', blogSchema);
+export const Message: Model<IMessage> = model<IMessage>('Message', messageSchema);

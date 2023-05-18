@@ -2,28 +2,44 @@ import Joi from "joi";
 import { IUser } from "../models/user";
 // a7a ya abdo
 
-    const createUserSchema = Joi.object<IUser>({
-        username: Joi.string().min(9).max(255).required(),
-        email: Joi.string().min(9).max(255).email().required(),
-        password: Joi.string().min(5).max(255).required(),
-        phone: Joi.string()
-            .min(7)
-            .max(15)
-            .pattern(/^[0-9]+$/)
-            .required(),
-        role: Joi.string()
-    });
+const createUserSchema = Joi.object<IUser>({
+    name: Joi.string()
+        .required()
+        .min(9)
+        .max(50),
+    email: Joi.string()
+        .min(9)
+        .max(100)
+        .email()
+        .required(),
+    password: Joi.string()
+        .min(5)
+        .max(50)
+        .required(),
+    phone: Joi.string()
+        .required()
+        .min(7)
+        .max(15)
+        .pattern(/^[0-9]+$/),
+    role: Joi.string()
+});
 
 const validateUserPut = (user: any) =>
 {
     const schema = Joi.object<IUser>({
-        username: Joi.string().min(9).max(255).required(),
-        email: Joi.string().min(9).max(255).email(),
-        password: Joi.string().min(5).max(255),
+        email: Joi.string()
+            .required()
+            .email()
+            .min(9)
+            .max(50),
+        password: Joi.string()
+            .min(5)
+            .max(50),
         phone: Joi.string()
+            .required()
             .min(7)
             .max(15)
-            .pattern(/^[0-9]+$/),
+            .pattern(/^[0-9]+$/)
     });
 
     return schema.validate(user);

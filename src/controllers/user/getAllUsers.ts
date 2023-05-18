@@ -1,9 +1,10 @@
 import { NextFunction, Response } from 'express';
 import { User } from '../../models/user';
 import { AuthenticatedReq } from '../../middlewares/auth';
-//@desc         get all superadmins
-//@route        GET /api/v1/users/superadmins
-//@access       private(super admins)
+
+
+
+
 export const getAllSubadmins = async (
     req: AuthenticatedReq,
     res: Response,

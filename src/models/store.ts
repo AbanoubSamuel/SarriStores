@@ -9,6 +9,7 @@ export interface IStore extends Document {
 const storeSchema = new Schema({
     name: {
         type: String,
+        unique: true,
         required: true
     },
     image: {

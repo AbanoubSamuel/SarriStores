@@ -8,14 +8,16 @@ export enum ReqTypes {
 
 export const validatorService =
     (validationSchema: any, type: ReqTypes = ReqTypes.body) =>
-        (req: Request, res: Response, next: NextFunction) => {
+        (req: Request, res: Response, next: NextFunction) =>
+        {
             const result = validationSchema.validate(req[type]);
 
             if (result.error) {
-                return res.status(400).json({
-                    success: false,
-                    message: result.error.details[0].message,
-                });
+                return res.status(400)
+                    .json({
+                        success: false,
+                        message: result.error.details[0].message,
+                    });
             }
             req.body = result.value;
 

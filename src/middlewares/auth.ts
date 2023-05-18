@@ -9,28 +9,32 @@ export interface AuthenticatedReq extends Request {
 }
 
 
-export const authUser = async function (
-    req: Request,
-    res: Response,
-    next: NextFunction,
-) {
+export const authUser = async (req: Request, res: Response, next: NextFunction) =>
+{
     try {
-        const token: string | undefined = req.header('Authorization')?.replace('Bearer ',
-            '');
+
+        console.log(req.query);
+        const token: string | undefined = req.header('Authorization')
+            ?.replace('Bearer ', '');
         if (!token) {
-            return res.status(401).json({error: 'Access denied ! No token provided.'});
+            return res.status(401)
+                .json({error: 'Access denied! No token provided.'});
         }
-        const decoded: DecodedToken = jwt.verify(token,
-            process.env.JWT_KEY!) as DecodedToken;
+
+        const decoded: DecodedToken = jwt.verify(token, process.env.JWT_KEY!) as DecodedToken;
         const user = await User.findById(decoded._id);
         if (!user) {
-            return res.status(401).json({error: 'Invalid token !'});
+            return res.status(401)
+                .json({error: 'Invalid token!'});
         }
+
         (req as AuthenticatedReq).user = user;
         next();
     } catch (err) {
         console.error(err);
-        return res.status(500).send({error: 'Internal server error.'});
+        return res.status(500)
+            .json({error: 'Invalid Token.'});
     }
 };
+
 

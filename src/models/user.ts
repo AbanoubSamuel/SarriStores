@@ -1,4 +1,5 @@
 import bcrypt from 'bcryptjs';
+import { bool, boolean, required } from 'joi';
 import jwt from 'jsonwebtoken';
 import mongoose, { Document, Model, model, Schema } from 'mongoose';
 import { Roles } from '../types/enums';
@@ -6,12 +7,12 @@ import { IStore } from './store';
 
 
 export interface IUser extends Document {
-    username: string;
+    name: string;
     email: string;
     password: string;
     role: Roles;
+    active: Boolean;
     phone: string;
-    image: String;
     stores: IStore[];
     createToken: () => string;
     isPasswordsMatched: (enteredPassword: string) => Promise<boolean>;
@@ -19,10 +20,9 @@ export interface IUser extends Document {
 
 const userSchema = new Schema(
     {
-        username: {
+        name: {
             type: String,
-            required: true,
-            unique: true,
+            required: false,
         },
         email: {
             type: String,
@@ -36,13 +36,13 @@ const userSchema = new Schema(
 
         role: {
             type: String,
-            default: 'user',
+            default: Roles.USER,
+        },
+        active: {
+            type: Boolean,
+            default: false,
         },
         phone: String,
-        image: {
-            type: String,
-            default: 'avatar.jpg',
-        },
         stores: [
             {
                 type: mongoose.Schema.Types.ObjectId,
@@ -55,7 +55,8 @@ const userSchema = new Schema(
 );
 
 // Hash password
-userSchema.pre('save', async function (next) {
+userSchema.pre('save', async function (next)
+{
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
     next();
@@ -64,11 +65,13 @@ userSchema.pre('save', async function (next) {
 // Check if passwords are matched
 userSchema.methods.isPasswordsMatched = async function (
     enteredPassword: string,
-) {
+)
+{
     return await bcrypt.compare(enteredPassword, this.password);
 };
 
-userSchema.methods.createToken = function () {
+userSchema.methods.createToken = function ()
+{
     return jwt.sign(
         {
             _id: this._id,
