@@ -1,9 +1,8 @@
 import bcrypt from 'bcryptjs';
-import { bool, boolean, required } from 'joi';
 import jwt from 'jsonwebtoken';
-import mongoose, { Document, Model, model, Schema } from 'mongoose';
-import { Roles } from '../types/enums';
-import { IStore } from './store';
+import mongoose, {Document, Model, model, Schema} from 'mongoose';
+import {Roles} from '../types/enums';
+import {IStore} from './store';
 
 
 export interface IUser extends Document {
@@ -33,7 +32,6 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
-
         role: {
             type: String,
             default: Roles.USER,
@@ -49,14 +47,19 @@ const userSchema = new Schema(
                 ref: 'Store'
             }
         ],
+        package:
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Package'
+            }
+
     },
 
     {timestamps: true},
 );
 
 // Hash password
-userSchema.pre('save', async function (next)
-{
+userSchema.pre('save', async function (next) {
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
     next();
@@ -65,13 +68,11 @@ userSchema.pre('save', async function (next)
 // Check if passwords are matched
 userSchema.methods.isPasswordsMatched = async function (
     enteredPassword: string,
-)
-{
+) {
     return await bcrypt.compare(enteredPassword, this.password);
 };
 
-userSchema.methods.createToken = function ()
-{
+userSchema.methods.createToken = function () {
     return jwt.sign(
         {
             _id: this._id,

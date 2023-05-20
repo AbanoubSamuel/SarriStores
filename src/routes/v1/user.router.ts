@@ -1,12 +1,21 @@
 import { Router } from 'express';
-import { getMe } from '../../controllers/user';
-import { checkRole } from '../../middlewares/access';
+import { authAdmins, checkRole } from '../../middlewares/access';
 import { authUser } from '../../middlewares/auth';
-import { addStoreToUser, updateUser } from "../../controllers/user/user";
+import { addStoreToUser, getMe, getUserById, getUsers, updateUser } from "../../controllers/user/user";
+import { Roles } from "../../types/enums";
 
 
 const userRouter = Router();
 
+userRouter
+    .route('/')
+    .all(authUser, getUserById)
+    .get();
+
+userRouter
+    .route('/all')
+    .all(authUser, authAdmins([Roles.ROOT, Roles.ADMIN, Roles.SUBADMIN]), getUsers)
+    .get();
 
 userRouter
     .route('/update')
@@ -16,7 +25,7 @@ userRouter
 userRouter
     .route('/addStore')
     .all(authUser, checkRole, addStoreToUser)
-    .patch();
+    .post();
 
 userRouter
     .route('/me')

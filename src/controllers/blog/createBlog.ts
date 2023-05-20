@@ -3,7 +3,7 @@ import { Response } from "express";
 import { AuthenticatedReq } from "../../middlewares/auth";
 
 
-export const blog = async (req: AuthenticatedReq, res: Response) =>
+export const createBlog = async (req: AuthenticatedReq, res: Response) =>
 {
     try {
         const blog = new Blog({

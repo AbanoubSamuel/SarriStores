@@ -5,7 +5,7 @@ import { IUser } from "../models/user";
 const createUserSchema = Joi.object<IUser>({
     name: Joi.string()
         .required()
-        .min(9)
+        .min(3)
         .max(50),
     email: Joi.string()
         .min(9)

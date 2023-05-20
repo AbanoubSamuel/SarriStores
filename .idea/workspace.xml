@@ -5,26 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75d75152-f342-4265-bfdf-c405a32bd14d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/controllers/blog/blog.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/message/message.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/user/getMe.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/user/user.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/message.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/v1/message.router.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/authRoles.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/development.env" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/development.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/user/createUser.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/user/documents.controller.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/user/getAllUsers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/user/getAllUsers.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/user/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/user/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/user/updateUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/user/updateUser.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middlewares/access.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middlewares/access.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middlewares/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middlewares/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/blog/blog.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/blog/createBlog.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/user/deleteUser.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/user/getAllUsers.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/user/getMe.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/user/getUserById.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/user/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/user/updateUser.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/user/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/user/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/middlewares/uploads.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middlewares/uploads.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/middlewares/validation.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middlewares/validation.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middlewares/validator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middlewares/validator.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/blog.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/blog.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/package.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/package.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/store.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/user.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/v1/auth.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/auth.router.ts" afterDir="false" />
@@ -61,24 +54,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/media/My_Data/Code/Back-End/HR-System&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.TypeScript&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/ilinux/.nvm/versions/node/v18.16.0/lib/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/media/My_Data/Code/Back-End/HR-System",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode.TypeScript",
+    "ts.external.directory.path": "/home/ilinux/.nvm/versions/node/v18.16.0/lib/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/controllers/blog/" />
@@ -108,6 +102,10 @@
       <workItem from="1684344745075" duration="4498000" />
       <workItem from="1684402190986" duration="4508000" />
       <workItem from="1684408058999" duration="7384000" />
+      <workItem from="1684421426638" duration="3000" />
+      <workItem from="1684421555463" duration="27000" />
+      <workItem from="1684432689118" duration="9627000" />
+      <workItem from="1684574271866" duration="14964000" />
     </task>
     <servers />
   </component>

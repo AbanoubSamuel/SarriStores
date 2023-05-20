@@ -1,20 +1,16 @@
-import { NextFunction, Response } from "express";
-import { User } from '../../models/user';
-import { AuthenticatedReq } from "../../middlewares/auth";
-import { Roles } from "../../types/enums";
-import { Store } from "../../models/store";
+import {NextFunction, Response} from "express";
+import {User} from '../../models/user';
+import {AuthenticatedReq} from "../../middlewares/auth";
+import {Roles} from "../../types/enums";
+import {Store} from "../../models/store";
 import bcrypt from "bcryptjs";
+import axios from "axios";
 
 
-export const createSubAdmin = async (
-    req: AuthenticatedReq,
-    res: Response,
-    next: NextFunction,
-) =>
-{
+export const createSubAdmin = async (req: AuthenticatedReq, res: Response, next: NextFunction) => {
     try {
         const {email} = req.body;
-        const existingUser = await User.findOne({email});
+        const existingUser = await User.findOne({email: email});
         if (existingUser) {
             return res.status(409).json({
                 success: false,
@@ -38,8 +34,7 @@ export const createSubAdmin = async (
 };
 
 
-export const createAdmin = async (req: AuthenticatedReq, res: Response) =>
-{
+export const createAdmin = async (req: AuthenticatedReq, res: Response) => {
     try {
         const admin = await User.create({
             ...req.body,
@@ -60,8 +55,7 @@ export const createAdmin = async (req: AuthenticatedReq, res: Response) =>
 };
 
 
-export const user = async (req: AuthenticatedReq, res: Response, next: NextFunction) =>
-{
+export const createUser = async (req: AuthenticatedReq, res: Response, next: NextFunction) => {
     try {
         const user = new User({
             ...req.body,
@@ -83,8 +77,7 @@ export const user = async (req: AuthenticatedReq, res: Response, next: NextFunct
 };
 
 
-export const updateUser = async (req: AuthenticatedReq, res: Response) =>
-{
+export const updateUser = async (req: AuthenticatedReq, res: Response) => {
     try {
 
         const userId = res.locals?.userId;
@@ -94,8 +87,7 @@ export const updateUser = async (req: AuthenticatedReq, res: Response) =>
         if (!requestedUser) {
             return res.status(400)
                 .json({
-                    error_en: 'Invalid User',
-                    error_ar: 'مستخدم غير صحيح',
+                    message: 'Invalid User',
                 });
         }
 
@@ -121,15 +113,13 @@ export const updateUser = async (req: AuthenticatedReq, res: Response) =>
         if (!user) {
             return res.status(400)
                 .json({
-                    message_en: 'Cant Update User',
-                    message_ar: 'غير قادر على تحديث المستخدم',
+                    message: 'Cant Update User',
                 });
         }
 
         return res.status(200)
             .json({
-                message_en: 'User Updated Successfully',
-                message_ar: 'تم تحديث المستخدم بنجاح',
+                message: 'User Updated Successfully',
                 user: user,
             });
     } catch (err) {
@@ -140,48 +130,113 @@ export const updateUser = async (req: AuthenticatedReq, res: Response) =>
 };
 
 
-export const addStoreToUser = async (req: AuthenticatedReq, res: Response) =>
-{
-    const store = [...req.body]
+export const addStoreToUser = async (req: AuthenticatedReq, res: Response) => {
+    const storeData = {...req.body};
 
-    const stores = await Promise.all(
-        store.map(async (element) =>
-        {
-            const newStore = new Store({...element})
-            await newStore.save()
-            return newStore._id
-        })
-    )
-    console.log(stores);
+    const newStore = new Store({...storeData});
+    await newStore.save();
+
     const userId = req.query.userId as string;
     if (!userId) {
         res.status(400).json({
-            message: 'You have to provide userId'
-        })
+            message: 'You have to provide userId',
+        });
+        return;
     }
-    const user = await User.findById(userId)
+    const user = await User.findById(userId);
 
     if (user) {
-        user.stores.push(...stores);
-        const updatedUser = await user.save()
-        res.status(200).json(
-            {
-                success: true,
-                message: "Store added to user successfully",
-                data: updatedUser
-
-            }
-        )
-    } else {
-        res.status(404).json(
-            {
+        const image = req.body.image; // Assuming the uploaded file is available in req.file
+        if (!image) {
+            await newStore.deleteOne();
+            res.status(400).json({
                 success: false,
-                message: "Provided user not found",
-            }
-        )
+                message: 'Image file not found in the request',
+            });
+            return;
+        }
+
+        try {
+            // Make a POST request to the image upload route
+            // Set the image filename in the store document
+            newStore.image = image;
+            await newStore.save();
+        } catch (error) {
+            console.error('Error uploading image:', error);
+        }
+
+        // Add the store to the user
+        user.stores.push(newStore._id);
+        const updatedUser = await user.save();
+
+        const newUser = await User.findById(updatedUser._id).populate("stores")
+        res.status(200).json({
+            success: true,
+            message: 'Store added to user successfully',
+            data: newUser,
+        });
+    } else {
+        // Delete the newly created store if the user doesn't exist
+        await newStore.deleteOne();
+        res.status(404).json({
+            success: false,
+            message: 'Provided user not found',
+        });
     }
-}
+};
 
 
+export const getMe = async (req: AuthenticatedReq, res: Response) => {
+    const userId = req.user?._id;
+    const user = await User.findOne({_id: userId}).select('-password')
+        .populate('stores')
+        .populate('packages')
+    if (!user)
+        return res
+            .status(404)
+            .send({success: false, message: 'user with this id not found'});
+    return res.send({
+        success: true,
+        data: user,
+    });
+};
 
 
+export const getUserById = async (req: AuthenticatedReq, res: Response) => {
+    const userId = req.query.userId;
+    const user = await User.findOne({_id: userId}).select('-password');
+    if (!user || userId?.length != 24) {
+        return res
+            .status(404)
+            .send({
+                success: false,
+                message: 'User with this id not found'
+            });
+    } else {
+        return res.status(200)
+            .send({
+                success: true,
+                message: 'User fetched successfully',
+                user: user,
+            });
+    }
+};
+
+
+export const getUsers = async (req: AuthenticatedReq, res: Response) => {
+    const users = await User.find({}).select('-password');
+    if (!users) {
+        return res
+            .status(404)
+            .send({
+                success: false,
+                message: 'Users not found'
+            });
+    } else {
+        return res.send({
+            success: true,
+            message: 'Users fetched successfully',
+            users: users,
+        });
+    }
+};

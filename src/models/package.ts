@@ -30,4 +30,4 @@ const storeSchema = new Schema({
     },
 });
 
-export const Store: Model<IPackage> = model<IPackage>('Store', storeSchema);
+export const Store: Model<IPackage> = model<IPackage>('Package', storeSchema);

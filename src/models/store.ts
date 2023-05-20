@@ -1,4 +1,4 @@
-import { Document, Model, model, Schema } from 'mongoose';
+import {Document, Model, model, Schema} from 'mongoose';
 
 export interface IStore extends Document {
     name: string;
@@ -10,11 +10,10 @@ const storeSchema = new Schema({
     name: {
         type: String,
         unique: true,
-        required: true
+        required: false
     },
     image: {
         type: String,
-        default: 'avatar.jpg',
     },
     createdAt: {
         type: Date,

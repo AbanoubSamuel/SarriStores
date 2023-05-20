@@ -6,7 +6,7 @@ export enum ReqTypes {
     query = 'query',
 }
 
-export const validatorService =
+export const validator =
     (validationSchema: any, type: ReqTypes = ReqTypes.body) =>
         (req: Request, res: Response, next: NextFunction) =>
         {
@@ -20,6 +20,5 @@ export const validatorService =
                     });
             }
             req.body = result.value;
-
             next();
         };
