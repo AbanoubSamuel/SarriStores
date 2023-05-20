@@ -1,4 +1,4 @@
-import express, {Request, Response} from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
@@ -7,8 +7,8 @@ import bodyParser from 'body-parser';
 import Joi from 'joi';
 import userRouter from './routes/v1/user.router';
 import authRouter from './routes/v1/auth.router';
-import {upload} from './middlewares/uploads';
-import {errorHandler} from './responses/error';
+import { upload } from './middlewares/uploads';
+import { errorHandler } from './responses/error';
 import messageRouter from "./routes/v1/message.router";
 import blogRouter from "./routes/v1/blog.router";
 
@@ -22,8 +22,7 @@ dotenv.config({
 });
 
 
-app
-    .use(cors())
+app.use(cors())
     .use(bodyParser.json())
     .use(bodyParser.urlencoded({extended: true}))
 app.use(errorHandler)
@@ -33,7 +32,8 @@ app.use(errorHandler)
     .use('/SarriStores/api/v1/blog', blogRouter)
     .use('/SarriStores/api/v1/message', messageRouter)
     .use('/uploads', express.static('./uploads'))
-    .use('/SarriStores/api/v1/upload', upload.single('image'), (req, res) => {
+    .use('/SarriStores/api/v1/upload', upload.single('image'), (req, res) =>
+    {
         res.status(200)
             .send({filename: `/uploads/${req.file?.filename}`});
     })

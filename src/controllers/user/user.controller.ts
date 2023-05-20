@@ -1,13 +1,12 @@
 import {NextFunction, Response} from "express";
-import {User} from '../../models/user';
+import {User} from '../../models/User';
 import {AuthenticatedReq} from "../../middlewares/auth";
 import {Roles} from "../../types/enums";
-import {Store} from "../../models/store";
+import {Store} from "../../models/Store";
 import bcrypt from "bcryptjs";
-import axios from "axios";
 
-
-export const createSubAdmin = async (req: AuthenticatedReq, res: Response, next: NextFunction) => {
+export const createSubAdmin = async (req: AuthenticatedReq, res: Response, next: NextFunction) =>
+{
     try {
         const {email} = req.body;
         const existingUser = await User.findOne({email: email});
@@ -34,7 +33,8 @@ export const createSubAdmin = async (req: AuthenticatedReq, res: Response, next:
 };
 
 
-export const createAdmin = async (req: AuthenticatedReq, res: Response) => {
+export const createAdmin = async (req: AuthenticatedReq, res: Response) =>
+{
     try {
         const admin = await User.create({
             ...req.body,
@@ -55,7 +55,8 @@ export const createAdmin = async (req: AuthenticatedReq, res: Response) => {
 };
 
 
-export const createUser = async (req: AuthenticatedReq, res: Response, next: NextFunction) => {
+export const createUser = async (req: AuthenticatedReq, res: Response, next: NextFunction) =>
+{
     try {
         const user = new User({
             ...req.body,
@@ -77,7 +78,8 @@ export const createUser = async (req: AuthenticatedReq, res: Response, next: Nex
 };
 
 
-export const updateUser = async (req: AuthenticatedReq, res: Response) => {
+export const updateUser = async (req: AuthenticatedReq, res: Response) =>
+{
     try {
 
         const userId = res.locals?.userId;
@@ -130,7 +132,8 @@ export const updateUser = async (req: AuthenticatedReq, res: Response) => {
 };
 
 
-export const addStoreToUser = async (req: AuthenticatedReq, res: Response) => {
+export const addStoreToUser = async (req: AuthenticatedReq, res: Response) =>
+{
     const storeData = {...req.body};
 
     const newStore = new Store({...storeData});
@@ -186,7 +189,8 @@ export const addStoreToUser = async (req: AuthenticatedReq, res: Response) => {
 };
 
 
-export const getMe = async (req: AuthenticatedReq, res: Response) => {
+export const getMe = async (req: AuthenticatedReq, res: Response) =>
+{
     const userId = req.user?._id;
     const user = await User.findOne({_id: userId}).select('-password')
         .populate('stores')
@@ -202,10 +206,11 @@ export const getMe = async (req: AuthenticatedReq, res: Response) => {
 };
 
 
-export const getUserById = async (req: AuthenticatedReq, res: Response) => {
+export const getUserById = async (req: AuthenticatedReq, res: Response) =>
+{
     const userId = req.query.userId;
     const user = await User.findOne({_id: userId}).select('-password');
-    if (!user || userId?.length != 24) {
+    if (!user) {
         return res
             .status(404)
             .send({
@@ -223,7 +228,8 @@ export const getUserById = async (req: AuthenticatedReq, res: Response) => {
 };
 
 
-export const getUsers = async (req: AuthenticatedReq, res: Response) => {
+export const getUsers = async (req: AuthenticatedReq, res: Response) =>
+{
     const users = await User.find({}).select('-password');
     if (!users) {
         return res

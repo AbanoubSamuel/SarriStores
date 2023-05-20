@@ -5,24 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75d75152-f342-4265-bfdf-c405a32bd14d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/controllers/blog/blog.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/__tests__/unit/users/super-admins.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/__tests__/unit/users/super-admins.test.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/blog/blog.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/blog/createBlog.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/user/deleteUser.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/user/getAllUsers.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/user/getMe.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/user/getUserById.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/user/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/user/updateUser.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/user/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/user/user.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middlewares/uploads.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middlewares/uploads.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middlewares/validation.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middlewares/validation.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/package.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/package.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/store.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/auth/login.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/auth/login.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/blog/createBlog.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/message/message.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/message/message.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/user/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/user/user.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/seeder.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/seeder.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/middlewares/access.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middlewares/access.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/middlewares/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middlewares/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/middlewares/checkUserFound.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middlewares/checkUserFound.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/blog.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Blog.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/message.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Message.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/notification.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Notification.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/package.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Package.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/User.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/v1/auth.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/auth.router.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/v1/blog.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/blog.router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/v1/message.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/message.router.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/v1/user.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/user.router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/blogType.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/likes.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/validators/user.validator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/validators/user.validator.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,6 +64,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -105,7 +113,7 @@
       <workItem from="1684421426638" duration="3000" />
       <workItem from="1684421555463" duration="27000" />
       <workItem from="1684432689118" duration="9627000" />
-      <workItem from="1684574271866" duration="14964000" />
+      <workItem from="1684574271866" duration="24288000" />
     </task>
     <servers />
   </component>

@@ -5,7 +5,7 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import childProcess from 'child_process';
 
 let mongoServer: MongoMemoryServer;
-const loginEndpoint = '/api/v1/auth/login';
+const loginEndpoint = '/api/v1/auth/loginController';
 beforeAll(async () => {
     // Connecting to database
     mongoServer = await MongoMemoryServer.create();
@@ -20,7 +20,7 @@ describe('auth superadmin', async () => {
         childProcess.fork('../../../data/seeder', {execArgv: ['i']});
     });
 
-    it('login as superadmin', async () => {
+    it('loginController as superadmin', async () => {
         const res = await request(app)
             .post(loginEndpoint)
             .send({

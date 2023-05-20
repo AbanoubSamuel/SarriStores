@@ -1,5 +1,5 @@
 import { NextFunction, Response } from 'express';
-import { User } from '../models/user';
+import { User } from '../models/User';
 import { adminRoles } from '../types/authRoles';
 import { Roles } from '../types/enums';
 import { AuthenticatedReq } from './auth';

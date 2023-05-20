@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import mongoose from "mongoose";
-import { User } from '../models/user';
+import { User } from '../models/User';
 
 
 const checkUserFound = async (req: Request, res: Response, next: NextFunction) =>

@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import mongoose, {Document, Model, model, Schema} from 'mongoose';
 import {Roles} from '../types/enums';
-import {IStore} from './store';
+import {IStore} from './Store';
 
 
 export interface IUser extends Document {

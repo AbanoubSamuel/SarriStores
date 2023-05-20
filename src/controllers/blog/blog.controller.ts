@@ -1,0 +1,103 @@
+import {Blog} from "../../models/Blog";
+import {Response} from "express";
+import {AuthenticatedReq} from "../../middlewares/auth";
+import {Message} from "../../models/Message";
+
+
+
+export const getBlogs = async (req: AuthenticatedReq, res: Response) =>
+{
+    try {
+        // default to page 1 if no page parameter is provided
+        const page = parseInt(req.query.page as string) || 1;
+        // default to 10 results per page if no limit parameter is
+        const limit = parseInt(req.query.limit as string) || 10;
+        const skip = (page - 1) * limit;
+
+        const blogs = await Blog.find({})
+            .skip(skip)
+            .limit(limit);
+
+        return res.status(200)
+            .json({
+                success: true,
+                message: 'Messages retrieved successfully',
+                blogs: blogs,
+            });
+
+    } catch (error) {
+        return res.status(500)
+            .json({
+                success: false,
+                blogs: 'Failed to retrieve blogs',
+            });
+    }
+};
+export const blogController = async (req: AuthenticatedReq, res: Response) =>
+{
+    try {
+        const blog = new Blog({
+            ...req.body,
+        });
+
+        const createdBlog = await blog.save();
+
+        return res.status(201)
+            .json({
+                success: true,
+                message: 'Blog create successfully',
+                blog: createdBlog
+            });
+
+    } catch (error) {
+        return res.status(400)
+            .json({
+                success: false,
+                message: 'Failed to create a blog !',
+            });
+    }
+};
+
+
+export const updateBlog = async (req: AuthenticatedReq, res: Response) =>
+{
+    try {
+        const blogId = req.query.blogId as string;
+        const blog = await Blog.findById(blogId);
+
+        if (!blog) {
+            return res.status(409).json({
+                success: false,
+                message: 'Blog was not found',
+            });
+        }
+
+        // Update the blog with the data from req.body
+        blog.name = req.body.name;
+        blog.text = req.body.text;
+
+        const updatedBlog = await blog.save();
+        return res.status(201).json({
+            success: true,
+            message: 'Blog updated successfully',
+            blog: updatedBlog,
+        });
+    } catch (error) {
+        return res.status(400).json({
+            success: false,
+            message: 'Failed to update the blog!',
+        });
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+

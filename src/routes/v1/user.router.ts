@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { authAdmins, checkRole } from '../../middlewares/access';
 import { authUser } from '../../middlewares/auth';
-import { addStoreToUser, getMe, getUserById, getUsers, updateUser } from "../../controllers/user/user";
+import { addStoreToUser, getMe, getUserById, getUsers, updateUser } from "../../controllers/user/user.controller";
 import { Roles } from "../../types/enums";
 
 
@@ -23,7 +23,7 @@ userRouter
     .patch();
 
 userRouter
-    .route('/addStore')
+    .route('/add')
     .all(authUser, checkRole, addStoreToUser)
     .post();
 

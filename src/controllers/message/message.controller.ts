@@ -1,6 +1,6 @@
-import { AuthenticatedReq } from "../../middlewares/auth";
-import { Message } from "../../models/message";
-import { Response } from "express";
+import {AuthenticatedReq} from "../../middlewares/auth";
+import {Message} from "../../models/Message";
+import {Response} from "express";
 
 
 // export const createMessage = (req: AuthenticatedReq, res: Response) =>
@@ -35,7 +35,7 @@ export const createMessage = async (req: AuthenticatedReq, res: Response) =>
 };
 
 
-export const getAllMessages = async (req: AuthenticatedReq, res: Response) =>
+export const getMessages = async (req: AuthenticatedReq, res: Response) =>
 {
     try {
         // default to page 1 if no page parameter is provided

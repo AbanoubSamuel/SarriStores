@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { IUser } from "../models/user";
+import { IUser } from "../models/User";
 // a7a ya abdo
 
 const createUserSchema = Joi.object<IUser>({
