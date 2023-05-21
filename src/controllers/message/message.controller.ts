@@ -1,12 +1,8 @@
-import {AuthenticatedReq} from "../../middlewares/auth";
-import {Message} from "../../models/Message";
-import {Response} from "express";
+import { AuthenticatedReq } from "../../middlewares/auth";
+import { Message } from "../../models/message.model";
+import { Response } from "express";
+import { sendMail } from "../../helpers/sendMail";
 
-
-// export const createMessage = (req: AuthenticatedReq, res: Response) =>
-// {
-//
-// }
 
 
 export const createMessage = async (req: AuthenticatedReq, res: Response) =>
@@ -17,7 +13,7 @@ export const createMessage = async (req: AuthenticatedReq, res: Response) =>
         });
 
         const createdMessage = await message.save();
-
+        await sendMail(req);
         return res.status(201)
             .json({
                 success: true,
@@ -63,4 +59,3 @@ export const getMessages = async (req: AuthenticatedReq, res: Response) =>
             });
     }
 };
-

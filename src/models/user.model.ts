@@ -2,7 +2,8 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import mongoose, {Document, Model, model, Schema} from 'mongoose';
 import {Roles} from '../types/enums';
-import {IStore} from './Store';
+import {IStore} from './store.model';
+import { ObjectId } from "mongodb";
 
 
 export interface IUser extends Document {
@@ -12,7 +13,7 @@ export interface IUser extends Document {
     role: Roles;
     active: Boolean;
     phone: string;
-    stores: IStore[];
+    stores: ObjectId[];
     createToken: () => string;
     isPasswordsMatched: (enteredPassword: string) => Promise<boolean>;
 }

@@ -1,4 +1,4 @@
-import mongoose, { ConnectOptions, Error } from "mongoose";
+import mongoose, { ConnectOptions } from "mongoose";
 import app from "./app";
 import * as http from "http";
 
@@ -20,7 +20,7 @@ const server = http.createServer(app);
         console.log("Error on connecting to DB: " + (err as any).message);
         process.on("Unhandled rejection", (err, promise) =>
         {
-            console.log(`Error : ${ err.message }`);
+            console.log(`Error : ${err.message}`);
             //close server & exit process
             server.close(() => process.exit(1));
         });

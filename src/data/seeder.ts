@@ -1,6 +1,6 @@
 import colors from 'colors';
 import fs from 'fs';
-import { User } from '../models/User';
+import { User } from '../models/user.model';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import path from 'path';

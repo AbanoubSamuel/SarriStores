@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
 
-
 export enum ReqTypes {
     body = 'body',
     query = 'query',
@@ -16,7 +15,7 @@ export const validator =
                 return res.status(400)
                     .json({
                         success: false,
-                        message: result.error.details[0].message,
+                        message: result.error.details[0].message
                     });
             }
             req.body = result.value;

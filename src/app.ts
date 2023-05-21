@@ -31,6 +31,7 @@ app.use(errorHandler)
     .use('/SarriStores/api/v1/user', userRouter)
     .use('/SarriStores/api/v1/blog', blogRouter)
     .use('/SarriStores/api/v1/message', messageRouter)
+    .use('/SarriStores/api/v1/package', messageRouter)
     .use('/uploads', express.static('./uploads'))
     .use('/SarriStores/api/v1/upload', upload.single('image'), (req, res) =>
     {

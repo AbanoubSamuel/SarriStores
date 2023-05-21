@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { IUser, User } from '../models/User';
+import { IUser, User } from '../models/user.model';
 import jwt from 'jsonwebtoken';
 import DecodedToken from '../types/decodedToken';
 

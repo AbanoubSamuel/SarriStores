@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { User } from '../../models/User';
+import { User } from '../../models/user.model';
 
 
 const loginController = async (req: Request, res: Response) =>

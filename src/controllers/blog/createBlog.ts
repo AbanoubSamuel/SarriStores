@@ -1,8 +1,7 @@
-import {Blog} from "../../models/Blog";
-import {Response} from "express";
-import {AuthenticatedReq} from "../../middlewares/auth";
-import {Message} from "../../models/Message";
-
+import { Blog } from "../../models/blog.model";
+import { Response } from "express";
+import { AuthenticatedReq } from "../../middlewares/auth";
+import { Message } from "../../models/message.model";
 
 
 export const getBlogs = async (req: AuthenticatedReq, res: Response) =>
@@ -18,10 +17,19 @@ export const getBlogs = async (req: AuthenticatedReq, res: Response) =>
             .skip(skip)
             .limit(limit);
 
+        if(blogs.length == 0)
+        {
+            return res.status(404)
+                .json({
+                    success: true,
+                    message: 'No blogs found',
+                });
+        }
+
         return res.status(200)
             .json({
                 success: true,
-                message: 'Messages retrieved successfully',
+                message: 'Blogs retrieved successfully',
                 blogs: blogs,
             });
 
@@ -33,7 +41,7 @@ export const getBlogs = async (req: AuthenticatedReq, res: Response) =>
             });
     }
 };
-export const blogController = async (req: AuthenticatedReq, res: Response) =>
+export const createBlog = async (req: AuthenticatedReq, res: Response) =>
 {
     try {
         const blog = new Blog({
@@ -91,11 +99,33 @@ export const updateBlog = async (req: AuthenticatedReq, res: Response) =>
 };
 
 
+export const deleteBlog = async (req: AuthenticatedReq, res: Response) =>
+{
+    try {
+        const blogId = req.query.blogId as string;
+        const blog = await Blog.findById(blogId);
 
+        if (!blog) {
+            return res.status(409).json({
+                success: false,
+                message: 'Blog not found',
+            });
+        }
 
-
-
-
+        // Delete the blog with the id from req.query
+        const deletedBlog = await blog.deleteOne()
+        return res.status(201).json({
+            success: true,
+            message: 'Blog deleted successfully',
+            blog: deletedBlog,
+        });
+    } catch (error) {
+        return res.status(400).json({
+            success: false,
+            message: 'Failed to delete the blog!',
+        });
+    }
+};
 
 
 

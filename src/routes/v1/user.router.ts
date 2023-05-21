@@ -1,7 +1,14 @@
 import { Router } from 'express';
 import { authAdmins, checkRole } from '../../middlewares/access';
 import { authUser } from '../../middlewares/auth';
-import { addStoreToUser, getMe, getUserById, getUsers, updateUser } from "../../controllers/user/user.controller";
+import {
+    addStoreToUser,
+    deleteStoreFromUser,
+    getMe,
+    getUserById,
+    getUsers,
+    updateUser
+} from "../../controllers/user/user.controller";
 import { Roles } from "../../types/enums";
 
 
@@ -28,7 +35,12 @@ userRouter
     .post();
 
 userRouter
-    .route('/me')
+    .route('/store/delete')
+    .all(authUser, checkRole, deleteStoreFromUser)
+    .post();
+
+userRouter
+    .route('/currentUser')
     .all(authUser, getMe)
     .get();
 // this will take the branch and department as query 
