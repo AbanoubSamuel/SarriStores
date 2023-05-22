@@ -5,14 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75d75152-f342-4265-bfdf-c405a32bd14d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/routes/v1/package.router.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/package/package.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/package/package.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/auth/login.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/auth/login.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/user/user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/user/user.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middlewares/access.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middlewares/access.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/package.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/package.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/store.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/store.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/user.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/user.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/v1/auth.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/auth.router.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/v1/user.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/user.router.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,26 +42,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/media/My_Data/Code/Back-End/HR-System",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "inlay.hints",
-    "ts.external.directory.path": "/home/ilinux/.nvm/versions/node/v18.16.0/lib/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/media/My_Data/Code/Back-End/HR-System&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/ilinux/.nvm/versions/node/v18.16.0/lib/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/controllers/blog/" />
@@ -98,7 +96,8 @@
       <workItem from="1684432689118" duration="9627000" />
       <workItem from="1684574271866" duration="24910000" />
       <workItem from="1684655648326" duration="16942000" />
-      <workItem from="1684755409832" duration="8941000" />
+      <workItem from="1684755409832" duration="10706000" />
+      <workItem from="1684768264802" duration="6124000" />
     </task>
     <servers />
   </component>

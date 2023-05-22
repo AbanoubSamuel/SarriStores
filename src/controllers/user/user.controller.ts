@@ -31,6 +31,7 @@ export const createSubAdmin = async (req: AuthenticatedReq, res: Response, next:
         next(error);
     }
 };
+
 export const createAdmin = async (req: AuthenticatedReq, res: Response) =>
 {
     try {
@@ -51,6 +52,7 @@ export const createAdmin = async (req: AuthenticatedReq, res: Response) =>
         });
     }
 };
+
 export const createUser = async (req: AuthenticatedReq, res: Response) =>
 {
     try {
@@ -66,12 +68,13 @@ export const createUser = async (req: AuthenticatedReq, res: Response) =>
             message: 'Signup is successful'
         });
     } catch (error) {
-        return res.status(201).json({
+        return res.status(400).json({
             success: false,
             message: 'Failed to register user'
         });
     }
 };
+
 export const updateUser = async (req: AuthenticatedReq, res: Response) =>
 {
     try {
@@ -120,41 +123,48 @@ export const updateUser = async (req: AuthenticatedReq, res: Response) =>
             });
     }
 };
+
 export const addStoreToUser = async (req: AuthenticatedReq, res: Response) =>
 {
     const storeData = {...req.body};
     const newStore = new Store({...storeData});
-    await newStore.save();
     const userId = req.query.userId as string;
+
     if (!userId) {
         res.status(400).json({
             message: 'You have to provide userId'
         });
         return;
     }
+
     const user = await User.findById(userId);
+
     if (user) {
         const image = req.body.image; // Assuming the uploaded file is available in req.file
+
         if (!image) {
             await newStore.deleteOne();
-            res.status(400).json({
+            return res.status(400).json({
                 success: false,
-                message: 'Image file not found in the request'
+                message: 'Image path not found in the request'
             });
-            return;
         }
+
         try {
             // Make a POST request to the image upload route
             // Set the image filename in the store document
             newStore.image = image;
+            newStore.user = user._id; // Set the user property with the user ID
             await newStore.save();
         } catch (error) {
             console.error('Error uploading image:', error);
         }
+
         // Add the store to the user
         user.stores.push(newStore._id);
         const updatedUser = await user.save();
         const newUser = await User.findById(updatedUser._id).populate('stores');
+
         res.status(200).json({
             success: true,
             message: 'Store added to user successfully',
@@ -169,6 +179,7 @@ export const addStoreToUser = async (req: AuthenticatedReq, res: Response) =>
         });
     }
 };
+
 export const deleteStoreFromUser = async (req: AuthenticatedReq, res: Response) =>
 {
     try {
@@ -219,6 +230,7 @@ export const getMe = async (req: AuthenticatedReq, res: Response) =>
         data: user
     });
 };
+
 export const getUserById = async (req: AuthenticatedReq, res: Response) =>
 {
     const userId = req.query.userId;
@@ -239,21 +251,38 @@ export const getUserById = async (req: AuthenticatedReq, res: Response) =>
             });
     }
 };
-export const getUsers = async (req: AuthenticatedReq, res: Response) =>
-{
-    const users = await User.find({}).select('-password');
-    if (!users) {
-        return res
-            .status(404)
-            .send({
+
+export const getUsers = async (req: AuthenticatedReq, res: Response) => {
+    const page = parseInt(req.query.page as string) || 1; // Current page number
+    const limit = parseInt(req.query.limit as string) || 10; // Number of documents to fetch per page
+
+    try {
+        const count = await User.countDocuments();
+        const totalPages = Math.ceil(count / limit);
+
+        const users = await User.find({})
+            .select('-password')
+            .skip((page - 1) * limit)
+            .limit(limit);
+
+        if (users.length === 0) {
+            return res.status(404).json({
                 success: false,
-                message: 'Users not found'
+                message: 'Users not found',
             });
-    } else {
-        return res.send({
+        }
+
+        return res.json({
             success: true,
             message: 'Users fetched successfully',
-            users: users
+            users: users,
+            page: page,
+            totalPages: totalPages,
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Failed to fetch users',
         });
     }
 };
@@ -301,4 +330,66 @@ export const addPackageToUser = async (req: AuthenticatedReq, res: Response) =>
         });
     }
 
+};
+
+export const deleteUser = async (req: AuthenticatedReq, res: Response) =>
+{
+    try {
+
+        const userId = req.query.userId as string;
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(409).json({
+                success: false,
+                message: 'User was not found'
+            });
+        }
+
+        await user.remove();
+        return res.status(200).json({
+            success: true,
+            message: 'User deleted successfully'
+        });
+
+    } catch (error) {
+        return res.status(400).json({
+            success: false,
+            message: 'Failed to delete the user!'
+        });
+    }
+};
+
+export const getStores = async (req: AuthenticatedReq, res: Response) => {
+    const page = parseInt(req.query.page as string) || 1; // Current page number
+    const limit = parseInt(req.query.limit as string) || 10; // Number of documents to fetch per page
+
+    try {
+        const count = await Store.countDocuments();
+        const totalPages = Math.ceil(count / limit);
+
+        const stores = await Store.find({})
+            .select('-password')
+            .skip((page - 1) * limit)
+            .limit(limit);
+
+        if (stores.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: 'Stores not found',
+            });
+        }
+
+        return res.json({
+            success: true,
+            message: 'Stores fetched successfully',
+            stores: stores,
+            page: page,
+            totalPages: totalPages,
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Failed to fetch stores',
+        });
+    }
 };

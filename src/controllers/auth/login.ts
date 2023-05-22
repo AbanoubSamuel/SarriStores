@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { User } from '../../models/user.model';
 
 
-const loginController = async (req: Request, res: Response) =>
+const login = async (req: Request, res: Response) =>
 {
     const {
         email: email,
@@ -39,4 +39,4 @@ const loginController = async (req: Request, res: Response) =>
     });
 };
 
-export default loginController;
+export default login;
