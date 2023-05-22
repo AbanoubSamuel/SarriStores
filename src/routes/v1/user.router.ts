@@ -2,15 +2,15 @@ import { Router } from 'express';
 import { authAdmins, checkRole } from '../../middlewares/access';
 import { authUser } from '../../middlewares/auth';
 import {
+    addPackageToUser,
     addStoreToUser,
     deleteStoreFromUser,
     getMe,
     getUserById,
     getUsers,
     updateUser
-} from "../../controllers/user/user.controller";
-import { Roles } from "../../types/enums";
-
+} from '../../controllers/user/user.controller';
+import { Roles } from '../../types/enums';
 
 const userRouter = Router();
 
@@ -30,9 +30,14 @@ userRouter
     .patch();
 
 userRouter
-    .route('/add')
+    .route('/store/add')
     .all(authUser, checkRole, addStoreToUser)
     .post();
+
+userRouter
+    .route('/package/add')
+    .all(authUser, authAdmins([Roles.ROOT, Roles.ADMIN, Roles.SUBADMIN]), addPackageToUser)
+    .patch();
 
 userRouter
     .route('/store/delete')

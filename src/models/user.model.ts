@@ -1,10 +1,9 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import mongoose, {Document, Model, model, Schema} from 'mongoose';
-import {Roles} from '../types/enums';
-import {IStore} from './store.model';
-import { ObjectId } from "mongodb";
-
+import mongoose, { Document, Model, model, Schema } from 'mongoose';
+import { Roles } from '../types/enums';
+import { IStore } from './store.model';
+import { ObjectId } from 'mongodb';
 
 export interface IUser extends Document {
     name: string;
@@ -14,6 +13,7 @@ export interface IUser extends Document {
     active: Boolean;
     phone: string;
     stores: ObjectId[];
+    package: ObjectId;
     createToken: () => string;
     isPasswordsMatched: (enteredPassword: string) => Promise<boolean>;
 }
@@ -22,24 +22,24 @@ const userSchema = new Schema(
     {
         name: {
             type: String,
-            required: false,
+            required: false
         },
         email: {
             type: String,
             required: true,
-            unique: true,
+            unique: true
         },
         password: {
             type: String,
-            required: true,
+            required: true
         },
         role: {
             type: String,
-            default: Roles.USER,
+            default: Roles.USER
         },
         active: {
             type: Boolean,
-            default: false,
+            default: false
         },
         phone: String,
         stores: [
@@ -56,11 +56,12 @@ const userSchema = new Schema(
 
     },
 
-    {timestamps: true},
+    {timestamps: true}
 );
 
 // Hash password
-userSchema.pre('save', async function (next) {
+userSchema.pre('save', async function (next)
+{
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
     next();
@@ -68,19 +69,21 @@ userSchema.pre('save', async function (next) {
 
 // Check if passwords are matched
 userSchema.methods.isPasswordsMatched = async function (
-    enteredPassword: string,
-) {
+    enteredPassword: string
+)
+{
     return await bcrypt.compare(enteredPassword, this.password);
 };
 
-userSchema.methods.createToken = function () {
+userSchema.methods.createToken = function ()
+{
     return jwt.sign(
         {
             _id: this._id,
             email: this.email,
-            role: this.role,
+            role: this.role
         },
-        process.env.JWT_KEY!,
+        process.env.JWT_KEY!
     );
 };
 

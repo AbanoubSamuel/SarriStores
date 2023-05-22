@@ -1,4 +1,5 @@
 import { NextFunction, Response } from 'express';
+import { Package } from '../../models/package.model';
 import { User } from '../../models/user.model';
 import { AuthenticatedReq } from '../../middlewares/auth';
 import { Roles } from '../../types/enums';
@@ -50,7 +51,7 @@ export const createAdmin = async (req: AuthenticatedReq, res: Response) =>
         });
     }
 };
-export const createUser = async (req: AuthenticatedReq, res: Response, next: NextFunction) =>
+export const createUser = async (req: AuthenticatedReq, res: Response) =>
 {
     try {
         const user = new User({
@@ -65,7 +66,10 @@ export const createUser = async (req: AuthenticatedReq, res: Response, next: Nex
             message: 'Signup is successful'
         });
     } catch (error) {
-        next(error);
+        return res.status(201).json({
+            success: false,
+            message: 'Failed to register user'
+        });
     }
 };
 export const updateUser = async (req: AuthenticatedReq, res: Response) =>
@@ -76,6 +80,7 @@ export const updateUser = async (req: AuthenticatedReq, res: Response) =>
         if (!requestedUser) {
             return res.status(400)
                 .json({
+                    success: false,
                     message: 'Invalid User'
                 });
         }
@@ -96,18 +101,23 @@ export const updateUser = async (req: AuthenticatedReq, res: Response) =>
         if (!user) {
             return res.status(400)
                 .json({
-                    message: 'Cant Update User'
+                    success: false,
+                    message: 'User not found'
                 });
         }
         return res.status(200)
             .json({
+                success: true,
                 message: 'User Updated Successfully',
                 user: user
             });
     } catch (err) {
         console.error(err);
         return res.status(500)
-            .json({error: 'Internal Server Error'});
+            .json({
+                success: false,
+                message: 'Internal Server Error'
+            });
     }
 };
 export const addStoreToUser = async (req: AuthenticatedReq, res: Response) =>
@@ -247,58 +257,48 @@ export const getUsers = async (req: AuthenticatedReq, res: Response) =>
         });
     }
 };
-// export const addPackageToUser = async (req: AuthenticatedReq, res: Response) =>
-// {
-//     const storeData = {...req.body};
-//
-//     const newStore = new Store({...storeData});
-//     await newStore.save();
-//
-//     const userId = req.query.userId as string;
-//     if (!userId) {
-//         res.status(400).json({
-//             message: 'You have to provide userId'
-//         });
-//         return;
-//     }
-//     const user = await User.findById(userId);
-//
-//     if (user) {
-//         const image = req.body.image; // Assuming the uploaded file is available in req.file
-//         if (!image) {
-//             await newStore.deleteOne();
-//             res.status(400).json({
-//                 success: false,
-//                 message: 'Image file not found in the request'
-//             });
-//             return;
-//         }
-//
-//         try {
-//             // Make a POST request to the image upload route
-//             // Set the image filename in the store document
-//             newStore.image = image;
-//             await newStore.save();
-//         } catch (error) {
-//             console.error('Error uploading image:', error);
-//         }
-//
-//         // Add the store to the user
-//         user.stores.push(newStore._id);
-//         const updatedUser = await user.save();
-//
-//         const newUser = await User.findById(updatedUser._id).populate('stores');
-//         res.status(200).json({
-//             success: true,
-//             message: 'Store added to user successfully',
-//             data: newUser
-//         });
-//     } else {
-//         // Delete the newly created store if the user doesn't exist
-//         await newStore.deleteOne();
-//         res.status(404).json({
-//             success: false,
-//             message: 'Provided user not found'
-//         });
-//     }
-// };
+
+export const addPackageToUser = async (req: AuthenticatedReq, res: Response) =>
+{
+    try {
+        const userId = req.query.userId;
+        const packageId = req.query.packageId;
+        if (!userId || !packageId) {
+            return res.status(400).json({
+                success: false,
+                message: 'Please provide booth userId & packageId'
+            });
+        }
+
+        const user = await User.findById(userId);
+        const pack = await Package.findById(packageId);
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: 'User not found'
+            });
+        }
+
+        if (!pack) {
+            return res.status(404).json({
+                success: false,
+                message: 'Package not found'
+            });
+        }
+
+        user.package = pack._id;
+        const updatedUser = await user.save();
+
+        return res.status(201).json({
+            success: true,
+            message: 'package added to user successfully',
+            user: updatedUser
+        });
+    } catch (e) {
+        return res.status(403).json({
+            success: true,
+            message: 'Failed to add package to user'
+        });
+    }
+
+};

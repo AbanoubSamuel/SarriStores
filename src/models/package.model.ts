@@ -2,15 +2,17 @@ import { Document, Model, model, Schema } from 'mongoose';
 
 export interface IPackage extends Document {
     name: string;
-    points: string;
+    points: number;
     price: number;
+    image: string;
     createdAt: Date;
 }
 
-const storeSchema = new Schema({
+const packageSchema = new Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     points: {
         type: Number,
@@ -22,12 +24,12 @@ const storeSchema = new Schema({
     },
     image: {
         type: String,
-        default: 'avatar.jpg',
+        default: ''
     },
     createdAt: {
         type: Date,
         default: Date.now
-    },
+    }
 });
 
-export const Store: Model<IPackage> = model<IPackage>('Package', storeSchema);
+export const Package: Model<IPackage> = model<IPackage>('Package', packageSchema);
