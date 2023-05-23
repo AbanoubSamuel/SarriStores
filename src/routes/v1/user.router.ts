@@ -1,17 +1,20 @@
-import { Router } from 'express';
-import { deletePackage } from '../../controllers/package/package.controller';
-import { authAdmins, checkRole } from '../../middlewares/access';
-import { authUser } from '../../middlewares/auth';
+import {Router} from 'express';
+import {authAdmins, checkRole} from '../../middlewares/access.service';
+import {authUser} from '../../middlewares/auth.service';
 import {
     addPackageToUser,
     addStoreToUser,
-    deleteStoreFromUser, deleteUser,
-    getMe, getStores,
+    deleteStoreFromUser,
+    deleteUser,
+    getMe,
+    getStores,
     getUserById,
     getUsers,
     updateUser
 } from '../../controllers/user/user.controller';
-import { Roles } from '../../types/enums';
+import {Roles} from '../../types/enums';
+import {ReqTypes, validator} from "../../middlewares/validator.service";
+import {updateUserSchecma} from "../../validators/user.validator";
 
 const userRouter = Router();
 
@@ -27,27 +30,8 @@ userRouter
 
 userRouter
     .route('/update')
-    .all(authUser, checkRole, updateUser)
+    .all(authUser, checkRole, validator(updateUserSchecma, ReqTypes.body), updateUser)
     .patch();
-
-userRouter
-    .route('/store/add')
-    .all(authUser, checkRole, addStoreToUser)
-    .post();
-
-userRouter
-    .route('/store/all')
-    .all(authUser, authAdmins([Roles.ROOT, Roles.ADMIN, Roles.SUBADMIN]), getStores)
-    .get();
-userRouter
-    .route('/package/add')
-    .all(authUser, authAdmins([Roles.ROOT, Roles.ADMIN, Roles.SUBADMIN]), addPackageToUser)
-    .patch();
-
-userRouter
-    .route('/store/delete')
-    .all(authUser, checkRole, deleteStoreFromUser)
-    .post();
 
 userRouter
     .route('/currentUser')
@@ -58,5 +42,26 @@ userRouter
     .route('/delete')
     .all(authUser, authAdmins([Roles.ROOT, Roles.ADMIN, Roles.SUBADMIN]), deleteUser)
     .delete();
+
+userRouter
+    .route('/store/add')
+    .all(authUser, authAdmins([Roles.ROOT, Roles.ADMIN, Roles.SUBADMIN]), addStoreToUser)
+    .post();
+
+userRouter
+    .route('/store/all')
+    .all(authUser, authAdmins([Roles.ROOT, Roles.ADMIN, Roles.SUBADMIN]), getStores)
+    .get();
+
+userRouter
+    .route('/package/add')
+    .all(authUser, authAdmins([Roles.ROOT, Roles.ADMIN, Roles.SUBADMIN]), addPackageToUser)
+    .patch();
+
+userRouter
+    .route('/store/delete')
+    .all(authUser, authAdmins([Roles.ROOT, Roles.ADMIN, Roles.SUBADMIN]), deleteStoreFromUser)
+    .post();
+
 
 export default userRouter;

@@ -1,15 +1,15 @@
 import Joi from 'joi';
-import { IUser } from '../models/user.model';
+import {IUser} from '../models/user.model';
 // a7a ya abdo
 
-const createUserSchema = Joi.object<IUser>({
+export const createUserSchema = Joi.object<IUser>({
     name: Joi.string()
         .required()
         .min(3)
         .max(50),
     email: Joi.string()
         .min(9)
-        .max(100)
+        .max(50)
         .email()
         .required(),
     password: Joi.string()
@@ -24,13 +24,12 @@ const createUserSchema = Joi.object<IUser>({
     role: Joi.string()
 });
 
-const updateUserSchecma = Joi.object<IUser>({
+export const updateUserSchecma = Joi.object<IUser>({
     name: Joi.string()
         .required()
         .min(3)
         .max(50),
     email: Joi.string()
-        .required()
         .email()
         .min(9)
         .max(50),
@@ -38,10 +37,21 @@ const updateUserSchecma = Joi.object<IUser>({
         .min(5)
         .max(50),
     phone: Joi.string()
-        .required()
         .min(7)
         .max(15)
         .pattern(/^[0-9]+$/)
 });
 
-export { createUserSchema, updateUserSchecma };
+
+export const loginSchema = Joi.object<IUser>({
+    email: Joi.string()
+        .required()
+        .email()
+        .min(9)
+        .max(50),
+    password: Joi.string()
+        .required()
+        .min(5)
+        .max(50),
+});
+

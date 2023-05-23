@@ -1,7 +1,7 @@
 import { NextFunction, Response } from 'express';
 import { Package } from '../../models/package.model';
 import { User } from '../../models/user.model';
-import { AuthenticatedReq } from '../../middlewares/auth';
+import { AuthenticatedReq } from '../../middlewares/auth.service';
 import { Roles } from '../../types/enums';
 import { Store } from '../../models/store.model';
 import bcrypt from 'bcryptjs';

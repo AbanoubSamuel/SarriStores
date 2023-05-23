@@ -8,7 +8,7 @@ import Joi from 'joi';
 import packageRouter from './routes/v1/package.router';
 import userRouter from './routes/v1/user.router';
 import authRouter from './routes/v1/auth.router';
-import { upload } from './middlewares/uploads';
+import { upload } from './middlewares/uploads.service';
 import { errorHandler } from './responses/error';
 import messageRouter from './routes/v1/message.router';
 import blogRouter from './routes/v1/blog.router';

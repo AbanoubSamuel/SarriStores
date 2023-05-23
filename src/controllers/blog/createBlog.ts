@@ -1,6 +1,6 @@
 import { Blog } from "../../models/blog.model";
 import { Response } from "express";
-import { AuthenticatedReq } from "../../middlewares/auth";
+import { AuthenticatedReq } from "../../middlewares/auth.service";
 import { Message } from "../../models/message.model";
 
 

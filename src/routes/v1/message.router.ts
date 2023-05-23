@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { authUser } from '../../middlewares/auth';
+import { authUser } from '../../middlewares/auth.service';
 import { createMessage, getMessages } from "../../controllers/message/message.controller";
-import { authAdmins } from "../../middlewares/access";
+import { authAdmins } from "../../middlewares/access.service";
 import { Roles } from "../../types/enums";
 
 

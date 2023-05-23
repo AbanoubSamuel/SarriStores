@@ -1,4 +1,4 @@
-import { AuthenticatedReq } from "../../middlewares/auth";
+import { AuthenticatedReq } from "../../middlewares/auth.service";
 import { Message } from "../../models/message.model";
 import { Response } from "express";
 import { sendMail } from "../../helpers/sendMail";

@@ -2,7 +2,7 @@ import { NextFunction, Response } from 'express';
 import { User } from '../models/user.model';
 import { adminRoles } from '../types/authRoles';
 import { Roles } from '../types/enums';
-import { AuthenticatedReq } from './auth';
+import { AuthenticatedReq } from './auth.service';
 
 export function authAdmins(allowedRoles: Roles[])
 {
@@ -52,5 +52,3 @@ export const checkRole = async (req: AuthenticatedReq, res: Response, next: Next
         next();
     }
 };
-
-

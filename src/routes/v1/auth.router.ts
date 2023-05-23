@@ -1,14 +1,14 @@
-import { Router } from 'express';
+import {Router} from 'express';
 import login from '../../controllers/auth/login';
-import { createUser } from '../../controllers/user/user.controller';
-import { ReqTypes, validator } from '../../middlewares/validation.service';
-import { createUserSchema } from '../../validators/user.validator';
+import {createUser} from '../../controllers/user/user.controller';
+import {ReqTypes, validator} from '../../middlewares/validator.service';
+import {createUserSchema, loginSchema} from '../../validators/user.validator';
 
 
 const authRouter = Router();
 
 authRouter.route('/login')
-    .all(login)
+    .all(validator(loginSchema, ReqTypes.body), login)
     .post();
 
 authRouter.route('/register')

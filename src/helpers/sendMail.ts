@@ -1,4 +1,4 @@
-import { AuthenticatedReq } from "../middlewares/auth";
+import { AuthenticatedReq } from "../middlewares/auth.service";
 export const sendMail = async (req: AuthenticatedReq) =>
 {
     const sgMail = require('@sendgrid/mail')

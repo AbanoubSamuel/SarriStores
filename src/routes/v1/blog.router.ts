@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { authAdmins } from '../../middlewares/access';
-import { authUser } from '../../middlewares/auth';
+import { authAdmins } from '../../middlewares/access.service';
+import { authUser } from '../../middlewares/auth.service';
 import { Roles } from '../../types/enums';
 import { createBlog, deleteBlog, getBlogs, updateBlog } from "../../controllers/blog/createBlog";
 
