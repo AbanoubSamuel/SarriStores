@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75d75152-f342-4265-bfdf-c405a32bd14d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/validators/blog.validator.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/validators/package.validator.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validators/message.validator.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/v1/blog.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/blog.router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/v1/package.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/package.router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/v1/message.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/message.router.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +94,7 @@
       <workItem from="1684655648326" duration="16942000" />
       <workItem from="1684755409832" duration="10706000" />
       <workItem from="1684768264802" duration="6742000" />
-      <workItem from="1684825063623" duration="5784000" />
+      <workItem from="1684825063623" duration="6177000" />
     </task>
     <servers />
   </component>
