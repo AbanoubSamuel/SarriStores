@@ -220,7 +220,7 @@ export const getMe = async (req: AuthenticatedReq, res: Response) =>
     const userId = req.user?._id;
     const user = await User.findOne({_id: userId}).select('-password')
         .populate('stores')
-        .populate('packages');
+        .populate('package');
     if (!user)
         return res
             .status(404)
