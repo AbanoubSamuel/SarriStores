@@ -5,28 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75d75152-f342-4265-bfdf-c405a32bd14d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/validators/blog.validator.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validators/package.validator.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/blog/createBlog.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/blog/createBlog.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/message/message.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/message/message.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/package/package.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/package/package.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/user/user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/user/user.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/sendMail.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/sendMail.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middlewares/access.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middlewares/access.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middlewares/asynHandler.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middlewares/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middlewares/auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middlewares/catchAsync.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middlewares/checkUserFound.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middlewares/erorr.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middlewares/uploads.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middlewares/uploads.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middlewares/validation.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middlewares/validator.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middlewares/validator.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/v1/auth.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/auth.router.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/v1/blog.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/blog.router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/v1/message.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/message.router.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/v1/package.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/package.router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/v1/user.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/user.router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/validators/user.validator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/validators/user.validator.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +96,7 @@
       <workItem from="1684655648326" duration="16942000" />
       <workItem from="1684755409832" duration="10706000" />
       <workItem from="1684768264802" duration="6742000" />
-      <workItem from="1684825063623" duration="3438000" />
+      <workItem from="1684825063623" duration="5784000" />
     </task>
     <servers />
   </component>
