@@ -1,8 +1,7 @@
-import { AuthenticatedReq } from "../../middlewares/auth.service";
-import { Message } from "../../models/message.model";
-import { Response } from "express";
-import { sendMail } from "../../helpers/sendMail";
-
+import {AuthenticatedReq} from "../../middlewares/auth.service";
+import {Message} from "../../models/message.model";
+import {Response} from "express";
+import {sendMail} from "../../helpers/sendMail";
 
 
 export const createMessage = async (req: AuthenticatedReq, res: Response) =>
@@ -56,6 +55,36 @@ export const getMessages = async (req: AuthenticatedReq, res: Response) =>
             .json({
                 success: false,
                 message: 'Failed to retrieve messages',
+            });
+    }
+};
+
+
+export const deleteMessage = async (req: AuthenticatedReq, res: Response) =>
+{
+    try {
+        const messageId = req.query.messageId;
+        const message = await Message.findById(messageId)
+        if (!message) {
+            return res.status(404)
+                .json({
+                    success: true,
+                    message: 'Message not found successfully',
+                });
+        }
+
+        await message.remove();
+        return res.status(204)
+            .json({
+                success: true,
+                message: 'Message deleted successfully',
+            });
+
+    } catch (error) {
+        return res.status(500)
+            .json({
+                success: true,
+                message: 'Failed to delete the message !',
             });
     }
 };

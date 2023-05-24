@@ -6,7 +6,7 @@ export const sendMail = async (req: AuthenticatedReq) =>
     sgMail.setApiKey(process.env.SENDGRID_API_KEY)
     const text = req.body.text;
     const msg = {
-        to: 'abanoub.samuel@hotmail.com', // Change to your recipient
+        to: 'info@sarri.com', // Change to your recipient
         from: 'abanoub.samuel@hotmail.com', // Change to your verified sender
         subject: 'Package inquiry',
         text: req.body.text,

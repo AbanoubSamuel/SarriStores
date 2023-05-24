@@ -1,11 +1,11 @@
-import { NextFunction, Response } from 'express';
-import { Package } from '../../models/package.model';
-import { User } from '../../models/user.model';
-import { AuthenticatedReq } from '../../middlewares/auth.service';
-import { Roles } from '../../types/enums';
-import { Store } from '../../models/store.model';
+import {NextFunction, Response} from 'express';
+import {Package} from '../../models/package.model';
+import {User} from '../../models/user.model';
+import {AuthenticatedReq} from '../../middlewares/auth.service';
+import {Roles} from '../../types/enums';
+import {Store} from '../../models/store.model';
 import bcrypt from 'bcryptjs';
-import { ObjectId } from 'mongodb';
+import {ObjectId} from 'mongodb';
 
 export const createSubAdmin = async (req: AuthenticatedReq, res: Response, next: NextFunction) =>
 {
@@ -252,7 +252,8 @@ export const getUserById = async (req: AuthenticatedReq, res: Response) =>
     }
 };
 
-export const getUsers = async (req: AuthenticatedReq, res: Response) => {
+export const getUsers = async (req: AuthenticatedReq, res: Response) =>
+{
     const page = parseInt(req.query.page as string) || 1; // Current page number
     const limit = parseInt(req.query.limit as string) || 10; // Number of documents to fetch per page
 
@@ -359,7 +360,8 @@ export const deleteUser = async (req: AuthenticatedReq, res: Response) =>
     }
 };
 
-export const getStores = async (req: AuthenticatedReq, res: Response) => {
+export const getStores = async (req: AuthenticatedReq, res: Response) =>
+{
     const page = parseInt(req.query.page as string) || 1; // Current page number
     const limit = parseInt(req.query.limit as string) || 10; // Number of documents to fetch per page
 
