@@ -254,10 +254,11 @@ export const getUserById = async (req: AuthReq, res: Response) =>
 
 export const getUsers = async (req: AuthReq, res: Response) =>
 {
-    const page = parseInt(req.query.page as string) || 1; // Current page number
-    const limit = parseInt(req.query.limit as string) || 10; // Number of documents to fetch per page
-
     try {
+
+        const page = parseInt(req.query.page as string) || 1; // Current page number
+        const limit = parseInt(req.query.limit as string) || 10; // Number of documents to fetch per page
+
         const count = await User.countDocuments();
         const totalPages = Math.ceil(count / limit);
 
