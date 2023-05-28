@@ -1,10 +1,10 @@
 import { Blog } from "../../models/blog.model";
 import { Response } from "express";
-import { AuthenticatedReq } from "../../middlewares/auth.service";
+import { AuthReq } from "../../middlewares/auth.service";
 import { Message } from "../../models/message.model";
 
 
-export const getBlogs = async (req: AuthenticatedReq, res: Response) =>
+export const getBlogs = async (req: AuthReq, res: Response) =>
 {
     try {
         // default to page 1 if no page parameter is provided
@@ -41,7 +41,7 @@ export const getBlogs = async (req: AuthenticatedReq, res: Response) =>
             });
     }
 };
-export const createBlog = async (req: AuthenticatedReq, res: Response) =>
+export const createBlog = async (req: AuthReq, res: Response) =>
 {
     try {
         const blog = new Blog({
@@ -67,7 +67,7 @@ export const createBlog = async (req: AuthenticatedReq, res: Response) =>
 };
 
 
-export const updateBlog = async (req: AuthenticatedReq, res: Response) =>
+export const updateBlog = async (req: AuthReq, res: Response) =>
 {
     try {
         const blogId = req.query.blogId as string;
@@ -99,7 +99,7 @@ export const updateBlog = async (req: AuthenticatedReq, res: Response) =>
 };
 
 
-export const deleteBlog = async (req: AuthenticatedReq, res: Response) =>
+export const deleteBlog = async (req: AuthReq, res: Response) =>
 {
     try {
         const blogId = req.query.blogId as string;

@@ -1,12 +1,12 @@
 import { Response } from 'express';
-import { AuthenticatedReq } from '../../middlewares/auth.service';
+import { AuthReq } from '../../middlewares/auth.service';
 import { Blog } from '../../models/blog.model';
 import { Message } from '../../models/message.model';
 import { Package } from '../../models/package.model';
 import { Store } from '../../models/store.model';
 import { User } from '../../models/user.model';
 
-export const addPackage = async (req: AuthenticatedReq, res: Response) =>
+export const addPackage = async (req: AuthReq, res: Response) =>
 {
     try {
         const packageData = {...req.body};
@@ -25,7 +25,7 @@ export const addPackage = async (req: AuthenticatedReq, res: Response) =>
     }
 };
 
-export const getPackages = async (req: AuthenticatedReq, res: Response) =>
+export const getPackages = async (req: AuthReq, res: Response) =>
 {
     try {
         // default to page 1 if no page parameter is provided
@@ -54,7 +54,7 @@ export const getPackages = async (req: AuthenticatedReq, res: Response) =>
     }
 };
 
-export const updatePackage = async (req: AuthenticatedReq, res: Response) =>
+export const updatePackage = async (req: AuthReq, res: Response) =>
 {
     try {
 
@@ -84,7 +84,7 @@ export const updatePackage = async (req: AuthenticatedReq, res: Response) =>
     }
 };
 
-export const deletePackage = async (req: AuthenticatedReq, res: Response) =>
+export const deletePackage = async (req: AuthReq, res: Response) =>
 {
     try {
 

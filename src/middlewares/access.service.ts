@@ -2,11 +2,11 @@ import { NextFunction, Response } from 'express';
 import { User } from '../models/user.model';
 import { adminRoles } from '../types/authRoles';
 import { Roles } from '../types/enums';
-import { AuthenticatedReq } from './auth.service';
+import { AuthReq } from './auth.service';
 
 export function authAdmins(allowedRoles: Roles[])
 {
-    return function (req: AuthenticatedReq, res: Response, next: NextFunction)
+    return function (req: AuthReq, res: Response, next: NextFunction)
     {
         const role = req.user?.role;// Assuming the user object contains the role property
 
@@ -23,7 +23,7 @@ export function authAdmins(allowedRoles: Roles[])
     };
 }
 
-export const checkRole = async (req: AuthenticatedReq, res: Response, next: NextFunction) =>
+export const checkRole = async (req: AuthReq, res: Response, next: NextFunction) =>
 {
     if (req.user?.role !== Roles.USER) {
         const userId = req.query.userId;

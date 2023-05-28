@@ -1,5 +1,6 @@
-import { AuthenticatedReq } from "../middlewares/auth.service";
-export const sendMail = async (req: AuthenticatedReq) =>
+import {AuthReq} from "../middlewares/auth.service";
+
+export const sendMail = async (req: AuthReq) =>
 {
     const sgMail = require('@sendgrid/mail')
     // using Twilio SendGrid's v3 Node.js Library
@@ -8,10 +9,11 @@ export const sendMail = async (req: AuthenticatedReq) =>
     const msg = {
         to: 'info@sarri.com', // Change to your recipient
         from: 'abanoub.samuel@hotmail.com', // Change to your verified sender
-        subject: 'Package inquiry',
+        subject: 'Silver Package Inquiry',
         text: req.body.text,
         html: text,
     }
+
     sgMail
         .send(msg)
         .then(() =>

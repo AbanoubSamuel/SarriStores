@@ -1,5 +1,11 @@
 [
   {
+    "email": "user@user.com",
+    "password": "123123123",
+    "role": "user",
+    "phone": "+201215456156"
+  },
+  {
     "email": "admin@admin.com",
     "password": "123123123",
     "role": "admin",

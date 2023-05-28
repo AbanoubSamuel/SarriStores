@@ -1,10 +1,10 @@
-import {AuthenticatedReq} from "../../middlewares/auth.service";
+import {AuthReq} from "../../middlewares/auth.service";
 import {Message} from "../../models/message.model";
 import {Response} from "express";
 import {sendMail} from "../../helpers/sendMail";
 
 
-export const createMessage = async (req: AuthenticatedReq, res: Response) =>
+export const createMessage = async (req: AuthReq, res: Response) =>
 {
     try {
         const message = new Message({
@@ -30,7 +30,7 @@ export const createMessage = async (req: AuthenticatedReq, res: Response) =>
 };
 
 
-export const getMessages = async (req: AuthenticatedReq, res: Response) =>
+export const getMessages = async (req: AuthReq, res: Response) =>
 {
     try {
         // default to page 1 if no page parameter is provided
@@ -60,7 +60,7 @@ export const getMessages = async (req: AuthenticatedReq, res: Response) =>
 };
 
 
-export const deleteMessage = async (req: AuthenticatedReq, res: Response) =>
+export const deleteMessage = async (req: AuthReq, res: Response) =>
 {
     try {
         const messageId = req.query.messageId;

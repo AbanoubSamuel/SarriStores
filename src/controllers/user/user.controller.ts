@@ -1,13 +1,13 @@
-import {NextFunction, Response} from 'express';
-import {Package} from '../../models/package.model';
-import {User} from '../../models/user.model';
-import {AuthenticatedReq} from '../../middlewares/auth.service';
-import {Roles} from '../../types/enums';
-import {Store} from '../../models/store.model';
-import bcrypt from 'bcryptjs';
-import {ObjectId} from 'mongodb';
+import {NextFunction, Response} from "express";
+import {Package} from "../../models/package.model";
+import {User} from "../../models/user.model";
+import {AuthReq} from "../../middlewares/auth.service";
+import {Roles} from "../../types/enums";
+import {Store} from "../../models/store.model";
+import bcrypt from "bcryptjs";
+import {ObjectId} from "mongodb";
 
-export const createSubAdmin = async (req: AuthenticatedReq, res: Response, next: NextFunction) =>
+export const createSubAdmin = async (req: AuthReq, res: Response, next: NextFunction) =>
 {
     try {
         const {email} = req.body;
@@ -15,7 +15,7 @@ export const createSubAdmin = async (req: AuthenticatedReq, res: Response, next:
         if (existingUser) {
             return res.status(409).json({
                 success: false,
-                message: 'User with this email already exists'
+                message: "User with this email already exists"
             });
         }
         const createdUser = await User.create({
@@ -24,7 +24,7 @@ export const createSubAdmin = async (req: AuthenticatedReq, res: Response, next:
         });
         res.status(201).json({
             success: true,
-            message: 'Super admin created successfully',
+            message: "Super admin created successfully",
             data: createdUser
         });
     } catch (error) {
@@ -32,7 +32,7 @@ export const createSubAdmin = async (req: AuthenticatedReq, res: Response, next:
     }
 };
 
-export const createAdmin = async (req: AuthenticatedReq, res: Response) =>
+export const createAdmin = async (req: AuthReq, res: Response) =>
 {
     try {
         const admin = await User.create({
@@ -42,18 +42,18 @@ export const createAdmin = async (req: AuthenticatedReq, res: Response) =>
         return res.status(201).send({
             success: true,
             data: admin,
-            message: 'admin is created successfully'
+            message: "admin is created successfully"
         });
     } catch (error) {
         console.error(error);
         return res.status(500).send({
             success: false,
-            message: 'An error occurred while creating the admin'
+            message: "An error occurred while creating the admin"
         });
     }
 };
 
-export const createUser = async (req: AuthenticatedReq, res: Response) =>
+export const createUser = async (req: AuthReq, res: Response) =>
 {
     try {
         const user = new User({
@@ -61,21 +61,21 @@ export const createUser = async (req: AuthenticatedReq, res: Response) =>
             role: Roles.USER
         });
         await user.save();
-        const userWithoutPass = await User.findById(user._id).select('-password');
+        const userWithoutPass = await User.findById(user._id).select("-password");
         return res.status(201).json({
             success: true,
             data: userWithoutPass,
-            message: 'Signup is successful'
+            message: "Signup is successful"
         });
     } catch (error) {
         return res.status(400).json({
             success: false,
-            message: 'Failed to register user'
+            message: "Failed to register user"
         });
     }
 };
 
-export const updateUser = async (req: AuthenticatedReq, res: Response) =>
+export const updateUser = async (req: AuthReq, res: Response) =>
 {
     try {
         const userId = res.locals?.userId;
@@ -84,14 +84,14 @@ export const updateUser = async (req: AuthenticatedReq, res: Response) =>
             return res.status(400)
                 .json({
                     success: false,
-                    message: 'Invalid User'
+                    message: "Invalid User"
                 });
         }
         if (req.body.password) {
             req.body.password = bcrypt.hashSync(req.body.password, 10);
         }
-        if (req.user?.role === 'user') {
-            req.body.role = 'user';
+        if (req.user?.role === "user") {
+            req.body.role = "user";
         }
         // const user = await User.findByIdAndUpdate(userId, {...req.body}, {new: true});
         const user = await User.findById(userId);
@@ -105,13 +105,13 @@ export const updateUser = async (req: AuthenticatedReq, res: Response) =>
             return res.status(400)
                 .json({
                     success: false,
-                    message: 'User not found'
+                    message: "User not found"
                 });
         }
         return res.status(200)
             .json({
                 success: true,
-                message: 'User Updated Successfully',
+                message: "User Updated Successfully",
                 user: user
             });
     } catch (err) {
@@ -119,12 +119,12 @@ export const updateUser = async (req: AuthenticatedReq, res: Response) =>
         return res.status(500)
             .json({
                 success: false,
-                message: 'Internal Server Error'
+                message: "Internal Server Error"
             });
     }
 };
 
-export const addStoreToUser = async (req: AuthenticatedReq, res: Response) =>
+export const addStoreToUser = async (req: AuthReq, res: Response) =>
 {
     const storeData = {...req.body};
     const newStore = new Store({...storeData});
@@ -132,7 +132,7 @@ export const addStoreToUser = async (req: AuthenticatedReq, res: Response) =>
 
     if (!userId) {
         res.status(400).json({
-            message: 'You have to provide userId'
+            message: "You have to provide userId"
         });
         return;
     }
@@ -146,7 +146,7 @@ export const addStoreToUser = async (req: AuthenticatedReq, res: Response) =>
             await newStore.deleteOne();
             return res.status(400).json({
                 success: false,
-                message: 'Image path not found in the request'
+                message: "Image path not found in the request"
             });
         }
 
@@ -157,17 +157,17 @@ export const addStoreToUser = async (req: AuthenticatedReq, res: Response) =>
             newStore.user = user._id; // Set the user property with the user ID
             await newStore.save();
         } catch (error) {
-            console.error('Error uploading image:', error);
+            console.error("Error uploading image:", error);
         }
 
         // Add the store to the user
         user.stores.push(newStore._id);
         const updatedUser = await user.save();
-        const newUser = await User.findById(updatedUser._id).populate('stores');
+        const newUser = await User.findById(updatedUser._id).populate("stores");
 
         res.status(200).json({
             success: true,
-            message: 'Store added to user successfully',
+            message: "Store added to user successfully",
             data: newUser
         });
     } else {
@@ -175,19 +175,19 @@ export const addStoreToUser = async (req: AuthenticatedReq, res: Response) =>
         await newStore.deleteOne();
         res.status(404).json({
             success: false,
-            message: 'Provided user not found'
+            message: "Provided user not found"
         });
     }
 };
 
-export const deleteStoreFromUser = async (req: AuthenticatedReq, res: Response) =>
+export const deleteStoreFromUser = async (req: AuthReq, res: Response) =>
 {
     try {
         const userId = req.query.userId as string;
         const storeId = new ObjectId(req.query.storeId as string);
         if (!userId) {
             return res.status(404).json({
-                message: 'You have to provide userId'
+                message: "You have to provide userId"
             });
         }
 
@@ -195,7 +195,7 @@ export const deleteStoreFromUser = async (req: AuthenticatedReq, res: Response) 
         if (!user) {
             return res.status(404).json({
                 success: false,
-                message: 'User was not found with provided ID'
+                message: "User was not found with provided ID"
             });
         }
 
@@ -204,55 +204,55 @@ export const deleteStoreFromUser = async (req: AuthenticatedReq, res: Response) 
         await Store.deleteOne(new ObjectId(storeId));
         return res.status(200).json({
             success: true,
-            message: 'Store deleted successfully'
+            message: "Store deleted successfully"
         });
 
     } catch (e) {
         res.status(500).json({
             success: false,
-            message: 'Failed to delete the store'
+            message: "Failed to delete the store"
         });
     }
 };
 // Delete the newly created store if the user doesn't exist
-export const getMe = async (req: AuthenticatedReq, res: Response) =>
+export const getMe = async (req: AuthReq, res: Response) =>
 {
     const userId = req.user?._id;
-    const user = await User.findOne({_id: userId}).select('-password')
-        .populate('stores')
-        .populate('package');
+    const user = await User.findOne({_id: userId}).select("-password")
+        .populate("stores")
+        .populate("package");
     if (!user)
         return res
             .status(404)
-            .send({success: false, message: 'user with this id not found'});
+            .send({success: false, message: "user with this id not found"});
     return res.send({
         success: true,
         data: user
     });
 };
 
-export const getUserById = async (req: AuthenticatedReq, res: Response) =>
+export const getUserById = async (req: AuthReq, res: Response) =>
 {
     const userId = req.query.userId;
-    const user = await User.findOne({_id: userId}).select('-password');
+    const user = await User.findOne({_id: userId}).select("-password");
     if (!user) {
         return res
             .status(404)
             .send({
                 success: false,
-                message: 'User with this id not found'
+                message: "User with this id not found"
             });
     } else {
         return res.status(200)
             .send({
                 success: true,
-                message: 'User fetched successfully',
+                message: "User fetched successfully",
                 user: user
             });
     }
 };
 
-export const getUsers = async (req: AuthenticatedReq, res: Response) =>
+export const getUsers = async (req: AuthReq, res: Response) =>
 {
     const page = parseInt(req.query.page as string) || 1; // Current page number
     const limit = parseInt(req.query.limit as string) || 10; // Number of documents to fetch per page
@@ -262,20 +262,20 @@ export const getUsers = async (req: AuthenticatedReq, res: Response) =>
         const totalPages = Math.ceil(count / limit);
 
         const users = await User.find({})
-            .select('-password')
+            .select("-password")
             .skip((page - 1) * limit)
             .limit(limit);
 
         if (users.length === 0) {
             return res.status(404).json({
                 success: false,
-                message: 'Users not found',
+                message: "Users not found",
             });
         }
 
         return res.json({
             success: true,
-            message: 'Users fetched successfully',
+            message: "Users fetched successfully",
             users: users,
             page: page,
             totalPages: totalPages,
@@ -283,12 +283,12 @@ export const getUsers = async (req: AuthenticatedReq, res: Response) =>
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: 'Failed to fetch users',
+            message: "Failed to fetch users",
         });
     }
 };
 
-export const addPackageToUser = async (req: AuthenticatedReq, res: Response) =>
+export const addPackageToUser = async (req: AuthReq, res: Response) =>
 {
     try {
         const userId = req.query.userId;
@@ -296,7 +296,7 @@ export const addPackageToUser = async (req: AuthenticatedReq, res: Response) =>
         if (!userId || !packageId) {
             return res.status(400).json({
                 success: false,
-                message: 'Please provide booth userId & packageId'
+                message: "Please provide booth userId & packageId"
             });
         }
 
@@ -305,14 +305,14 @@ export const addPackageToUser = async (req: AuthenticatedReq, res: Response) =>
         if (!user) {
             return res.status(404).json({
                 success: false,
-                message: 'User not found'
+                message: "User not found"
             });
         }
 
         if (!pack) {
             return res.status(404).json({
                 success: false,
-                message: 'Package not found'
+                message: "Package not found"
             });
         }
 
@@ -321,19 +321,19 @@ export const addPackageToUser = async (req: AuthenticatedReq, res: Response) =>
 
         return res.status(201).json({
             success: true,
-            message: 'package added to user successfully',
+            message: "package added to user successfully",
             user: updatedUser
         });
     } catch (e) {
         return res.status(403).json({
             success: true,
-            message: 'Failed to add package to user'
+            message: "Failed to add package to user"
         });
     }
 
 };
 
-export const deleteUser = async (req: AuthenticatedReq, res: Response) =>
+export const deleteUser = async (req: AuthReq, res: Response) =>
 {
     try {
 
@@ -342,25 +342,25 @@ export const deleteUser = async (req: AuthenticatedReq, res: Response) =>
         if (!user) {
             return res.status(409).json({
                 success: false,
-                message: 'User was not found'
+                message: "User was not found"
             });
         }
 
         await user.remove();
         return res.status(200).json({
             success: true,
-            message: 'User deleted successfully'
+            message: "User deleted successfully"
         });
 
     } catch (error) {
         return res.status(400).json({
             success: false,
-            message: 'Failed to delete the user!'
+            message: "Failed to delete the user!"
         });
     }
 };
 
-export const getStores = async (req: AuthenticatedReq, res: Response) =>
+export const getStores = async (req: AuthReq, res: Response) =>
 {
     const page = parseInt(req.query.page as string) || 1; // Current page number
     const limit = parseInt(req.query.limit as string) || 10; // Number of documents to fetch per page
@@ -370,20 +370,20 @@ export const getStores = async (req: AuthenticatedReq, res: Response) =>
         const totalPages = Math.ceil(count / limit);
 
         const stores = await Store.find({})
-            .select('-password')
+            .select("-password")
             .skip((page - 1) * limit)
             .limit(limit);
 
         if (stores.length === 0) {
             return res.status(404).json({
                 success: false,
-                message: 'Stores not found',
+                message: "Stores not found",
             });
         }
 
         return res.json({
             success: true,
-            message: 'Stores fetched successfully',
+            message: "Stores fetched successfully",
             stores: stores,
             page: page,
             totalPages: totalPages,
@@ -391,7 +391,7 @@ export const getStores = async (req: AuthenticatedReq, res: Response) =>
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: 'Failed to fetch stores',
+            message: "Failed to fetch stores",
         });
     }
 };
