@@ -1,15 +1,15 @@
-import { NextFunction, Request, Response } from 'express';
+import {NextFunction, Request, Response} from "express";
 
 export enum ReqTypes {
-    body = 'body',
-    query = 'query',
+    body = "body",
+    query = "query",
 }
 
 export const validator =
-    (validationSchema: any, type: ReqTypes = ReqTypes.body) =>
+    (schema: any, type: ReqTypes = ReqTypes.body) =>
         (req: Request, res: Response, next: NextFunction) =>
         {
-            const result = validationSchema.validate(req[type]);
+            const result = schema.validate(req[type]);
 
             if (result.error) {
                 return res.status(400)
