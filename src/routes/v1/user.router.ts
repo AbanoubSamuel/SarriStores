@@ -13,7 +13,7 @@ import {
     updateUser
 } from '../../controllers/user/user.controller';
 import {Roles} from '../../types/enums';
-import {ReqTypes, validator} from "../../middlewares/validator.service";
+import {Req, validator} from "../../middlewares/validator.service";
 import {updateUserSchecma} from "../../validators/user.validator";
 
 const userRouter = Router();
@@ -30,7 +30,7 @@ userRouter
 
 userRouter
     .route('/update')
-    .all(authUser, checkRole, validator(updateUserSchecma, ReqTypes.body), updateUser)
+    .all(authUser, checkRole, validator(updateUserSchecma, Req.body), updateUser)
     .patch();
 
 userRouter

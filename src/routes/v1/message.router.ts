@@ -1,5 +1,5 @@
-import {Router} from 'express';
-import {authUser} from '../../middlewares/auth.service';
+import {Router} from "express";
+import {authUser} from "../../middlewares/auth.service";
 import {
     createMessage,
     deleteMessage,
@@ -7,23 +7,22 @@ import {
 } from "../../controllers/message/message.controller";
 import {authAdmins} from "../../middlewares/access.service";
 import {Roles} from "../../types/enums";
-import {ReqTypes, validator} from "../../middlewares/validator.service";
+import {Req, validator} from "../../middlewares/validator.service";
 import {createMessageSchema} from "../../validators/message.validator";
 
 
 const messageRouter = Router();
 
-messageRouter.route('/get')
+messageRouter.route("/get")
     .all(authUser, authAdmins([Roles.ROOT, Roles.ADMIN, Roles.SUBADMIN]), getMessages)
     .get();
 
-messageRouter.route('/create')
-    .all(authUser, validator(createMessageSchema, ReqTypes.body), createMessage)
+messageRouter.route("/create")
+    .all(authUser, validator(createMessageSchema, Req.body), createMessage)
     .post();
 
-messageRouter.route('/delete')
-    .all(authUser, validator(createMessageSchema, ReqTypes.body),
-        authAdmins([Roles.ROOT, Roles.ADMIN, Roles.SUBADMIN]), deleteMessage)
+messageRouter.route("/delete")
+    .all(authUser, authAdmins([Roles.ROOT, Roles.ADMIN, Roles.SUBADMIN]), deleteMessage)
     .delete();
 
 

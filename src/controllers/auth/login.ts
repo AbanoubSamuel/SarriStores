@@ -1,8 +1,10 @@
 import { Request, Response } from "express";
 import { User } from '../../models/user.model';
+import {AuthReq} from "../../middlewares/auth.service";
+import {Roles} from "../../types/enums";
 
 
-const login = async (req: Request, res: Response) =>
+export const login = async (req: Request, res: Response) =>
 {
     const {
         email: email,
@@ -39,4 +41,26 @@ const login = async (req: Request, res: Response) =>
     });
 };
 
-export default login;
+
+export const register = async (req: AuthReq, res: Response) =>
+{
+    try {
+        const user = new User({
+            ...req.body,
+            role: Roles.USER
+        });
+        await user.save();
+        const userWithoutPass = await User.findById(user._id).select("-password");
+        return res.status(201).json({
+            success: true,
+            data: userWithoutPass,
+            message: "Signup is successful"
+        });
+    } catch (error) {
+        return res.status(400).json({
+            success: false,
+            message: "Failed to register user"
+        });
+    }
+};
+

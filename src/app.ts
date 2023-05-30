@@ -12,6 +12,8 @@ import { upload } from './middlewares/uploads.service';
 import { errorHandler } from './responses/error';
 import messageRouter from './routes/v1/message.router';
 import blogRouter from './routes/v1/blog.router';
+import policyRouter from "./routes/v1/policy.router";
+import aboutRouter from "./routes/v1/about.router";
 
 Joi.object = require('joi-objectid')(Joi);
 
@@ -31,6 +33,8 @@ app.use(errorHandler)
     .use('/SarriStores/api/v1/blog', blogRouter)
     .use('/SarriStores/api/v1/message', messageRouter)
     .use('/SarriStores/api/v1/package', packageRouter)
+    .use('/SarriStores/api/v1/policy', policyRouter)
+    .use('/SarriStores/api/v1/about', aboutRouter)
     .use('/uploads', express.static('./uploads'))
     .use('/SarriStores/api/v1/upload', upload.single('image'), (req, res) =>
     {

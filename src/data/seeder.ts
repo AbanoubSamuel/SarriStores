@@ -1,17 +1,20 @@
-import colors from 'colors';
-import fs from 'fs';
-import {User} from '../models/user.model';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import path from 'path';
+import * as colors from "colors";
+import {User} from "../models/user.model";
+import mongoose from "mongoose";
+import *  as dotenv from "dotenv";
+import * as path from "path";
 import {Package} from "../models/package.model";
+import {About} from "../models/about.model";
+import {Policy} from "../models/policy.model";
+import * as fs from "fs";
 
 
 dotenv.config({path: path.resolve(__dirname, `../config/development.env`)});
 
-const Users = JSON.parse(fs.readFileSync('users.json', 'utf-8'));
-const Packages = JSON.parse(fs.readFileSync('packages.json', 'utf-8'));
-
+const Users = JSON.parse(fs.readFileSync("users.json", "utf-8"));
+const Packages = JSON.parse(fs.readFileSync("packages.json", "utf-8"));
+const aboutUs = JSON.parse(fs.readFileSync("aboutUs.json", "utf-8"));
+const policy = JSON.parse(fs.readFileSync("privacyPolicy.json", "utf-8"));
 //  Pushing data to db
 const pushJsonData = async (data: any, collection: mongoose.Model<any>) =>
 {
@@ -28,9 +31,17 @@ const deleteAllModelData = async (collection: mongoose.Model<any>) =>
 const addAllData = async () =>
 {
     try {
-        await pushJsonData(Users, User);
-        await pushJsonData(Packages, Package);
-        console.log(colors.bgBlue.white.bold('all data is added'));
+        await Promise.all(
+            [
+                await pushJsonData(Users, User),
+                await pushJsonData(Packages, Package),
+                await pushJsonData(aboutUs, About),
+                await pushJsonData(policy, Policy),
+            ]
+        );
+
+
+        console.log("Added all data successfully");
     } catch (err) {
         console.log(`Error while seeding data ${err}`);
         process.exit(1);
@@ -42,9 +53,9 @@ const removeAllData = async () =>
 {
     try {
         await deleteAllModelData(User);
-        console.log(colors.bgRed.white.bold('all data is deleted'));
+        console.log("all data is deleted");
     } catch (err) {
-        console.log(colors.bgRed.white.bold(`Error while deleting data ${err}`));
+        console.log(`Error while deleting data ${err}`);
         process.exit(1);
     }
 };
@@ -53,11 +64,11 @@ const removeAllData = async () =>
 {
     const operation = process.argv[2];
     try {
-        if (operation === 'i') {
+        if (operation === "i") {
             await mongoose.connect(process.env.MONGO_URI!);
             await addAllData();
         }
-        if (operation === 'd') {
+        if (operation === "d") {
             await mongoose.connect(process.env.MONGO_URI!);
             await removeAllData();
         }

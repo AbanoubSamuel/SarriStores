@@ -1,5 +1,5 @@
-import Joi from 'joi';
-import {IUser} from '../models/user.model';
+import Joi from "joi";
+import {IUser} from "../models/user.model";
 // a7a ya abdo
 
 export const createUserSchema = Joi.object<IUser>({
@@ -8,20 +8,19 @@ export const createUserSchema = Joi.object<IUser>({
         .min(3)
         .max(50),
     email: Joi.string()
+        .required()
         .min(9)
         .max(50)
-        .email()
-        .required(),
+        .email(),
     password: Joi.string()
+        .required()
         .min(5)
-        .max(50)
-        .required(),
+        .max(50),
     phone: Joi.string()
         .required()
         .min(7)
         .max(15)
         .pattern(/^[0-9]+$/),
-    role: Joi.string()
 });
 
 export const updateUserSchecma = Joi.object<IUser>({
@@ -42,8 +41,7 @@ export const updateUserSchecma = Joi.object<IUser>({
         .pattern(/^[0-9]+$/)
 });
 
-
-export const loginSchema = Joi.object<IUser>({
+export const loginUserSchema = Joi.object<IUser>({
     email: Joi.string()
         .required()
         .email()

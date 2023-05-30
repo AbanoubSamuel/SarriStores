@@ -1,12 +1,12 @@
 import {NextFunction, Request, Response} from "express";
 
-export enum ReqTypes {
+export enum Req {
     body = "body",
     query = "query",
 }
 
 export const validator =
-    (schema: any, type: ReqTypes = ReqTypes.body) =>
+    (schema: any, type: Req = Req.body) =>
         (req: Request, res: Response, next: NextFunction) =>
         {
             const result = schema.validate(req[type]);

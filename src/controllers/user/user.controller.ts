@@ -53,28 +53,6 @@ export const createAdmin = async (req: AuthReq, res: Response) =>
     }
 };
 
-export const createUser = async (req: AuthReq, res: Response) =>
-{
-    try {
-        const user = new User({
-            ...req.body,
-            role: Roles.USER
-        });
-        await user.save();
-        const userWithoutPass = await User.findById(user._id).select("-password");
-        return res.status(201).json({
-            success: true,
-            data: userWithoutPass,
-            message: "Signup is successful"
-        });
-    } catch (error) {
-        return res.status(400).json({
-            success: false,
-            message: "Failed to register user"
-        });
-    }
-};
-
 export const updateUser = async (req: AuthReq, res: Response) =>
 {
     try {

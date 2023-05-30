@@ -1,17 +1,17 @@
 [
   {
     "name": "Silver",
-    "points": 5000,
-    "price": 500
+    "points": 300,
+    "price": 3000
   },
   {
     "name": "Bronze",
-    "points": 15000,
-    "price": 1000
+    "points": 1000,
+    "price": 5000
   },
   {
     "name": "Gold",
-    "points": 20000,
-    "price": 2000
+    "points": 2000,
+    "price": 7000
   }
 ]

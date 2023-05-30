@@ -3,7 +3,7 @@ import {authAdmins} from '../../middlewares/access.service';
 import {authUser} from '../../middlewares/auth.service';
 import {Roles} from '../../types/enums';
 import {createBlog, deleteBlog, getBlogs, updateBlog} from "../../controllers/blog/createBlog";
-import {ReqTypes, validator} from "../../middlewares/validator.service";
+import {Req, validator} from "../../middlewares/validator.service";
 import {createBlogSchema, deleteBlogSchema, updateBlogSchema} from "../../validators/blog.validator";
 
 
@@ -18,18 +18,18 @@ blogRouter
 blogRouter
     .route('/create')
     .all(authUser, authAdmins([Roles.ROOT, Roles.ADMIN, Roles.SUBADMIN]),
-        validator(createBlogSchema, ReqTypes.body), createBlog)
+        validator(createBlogSchema, Req.body), createBlog)
     .post();
 
 blogRouter
     .route('/update')
     .all(authUser, authAdmins([Roles.ROOT, Roles.ADMIN, Roles.SUBADMIN]),
-        validator(updateBlogSchema, ReqTypes.body), updateBlog)
+        validator(updateBlogSchema, Req.body), updateBlog)
     .patch();
 
 blogRouter
     .route('/delete')
     .all(authUser, authAdmins([Roles.ROOT, Roles.ADMIN, Roles.SUBADMIN]),
-        validator(deleteBlogSchema, ReqTypes.query), deleteBlog)
+        validator(deleteBlogSchema, Req.query), deleteBlog)
     .delete();
 export default blogRouter;

@@ -1,18 +1,17 @@
-import {Router} from 'express';
-import login from '../../controllers/auth/login';
-import {createUser} from '../../controllers/user/user.controller';
-import {ReqTypes, validator} from '../../middlewares/validator.service';
-import {createUserSchema, loginSchema} from '../../validators/user.validator';
+import {Router} from "express";
+import {Req, validator} from "../../middlewares/validator.service";
+import {createUserSchema, loginUserSchema} from "../../validators/user.validator";
+import {register, login} from "../../controllers/auth/login";
 
 
 const authRouter = Router();
 
-authRouter.route('/login')
-    .all(validator(loginSchema, ReqTypes.body), login)
+authRouter.route("/login")
+    .all(validator(loginUserSchema, Req.body), login)
     .post();
 
-authRouter.route('/register')
-    .all(validator(createUserSchema, ReqTypes.body), createUser)
+authRouter.route("/register")
+    .all(validator(createUserSchema, Req.body), register)
     .post();
 
 export default authRouter;
