@@ -5,29 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75d75152-f342-4265-bfdf-c405a32bd14d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/controllers/aboutUs/aboutUs.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/policy/policy.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/aboutUs.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/privacyPolicy.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/about.model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/policy.model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/v1/about.router.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/v1/policy.router.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/validators/about.validator.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/validators/policy.vaidator.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/auth/login.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/auth/login.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/user/user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/user/user.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/packages.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/packages.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/seeder.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/seeder.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middlewares/validator.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middlewares/validator.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/v1/auth.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/auth.router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/v1/blog.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/blog.router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/v1/message.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/message.router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/v1/package.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/package.router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/v1/user.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/user.router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/validators/user.validator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/validators/user.validator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/policy/policy.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/policy/policy.controller.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +110,7 @@
       <workItem from="1685264582217" duration="3831000" />
       <workItem from="1685280682109" duration="634000" />
       <workItem from="1685361102447" duration="4938000" />
-      <workItem from="1685449560963" duration="8636000" />
+      <workItem from="1685449560963" duration="9208000" />
     </task>
     <servers />
   </component>

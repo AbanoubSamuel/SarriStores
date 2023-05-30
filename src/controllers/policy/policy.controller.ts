@@ -9,8 +9,6 @@ export const updatePolicy = async (req: AuthReq, res: Response) =>
     try {
         const policyId = req.query.policyId as string;
         const newPolicy = req.body.paragraph;
-        console.log(newPolicy);
-        console.log(policyId);
         const policy = await Policy.findById(policyId).exec();
 
         if (!policy) {
@@ -22,10 +20,7 @@ export const updatePolicy = async (req: AuthReq, res: Response) =>
         }
 
         policy.paragraph = newPolicy;
-        console.log("Policy : ", policy);
-
         const updatedPolicy = await policy.save();
-        console.log("updatedPolicy : ", updatedPolicy);
         return res.status(200)
             .json({
                 success: true,
