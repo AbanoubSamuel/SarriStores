@@ -18,7 +18,7 @@ messageRouter.route("/get")
     .get();
 
 messageRouter.route("/create")
-    .all(authUser, validator(createMessageSchema, Req.body), createMessage)
+    .all(validator(createMessageSchema, Req.body), createMessage)
     .post();
 
 messageRouter.route("/delete")
