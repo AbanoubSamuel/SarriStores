@@ -10,6 +10,9 @@ export const createBlogSchema = Joi.object<IBlog>({
     text: Joi.string()
         .required()
         .min(9)
+        .max(255),
+    image: Joi.string()
+        .min(3)
         .max(255)
 });
 
@@ -20,6 +23,9 @@ export const updateBlogSchema = Joi.object<IBlog>({
         .max(50),
     text: Joi.string()
         .min(9)
+        .max(255),
+    image: Joi.string()
+        .min(3)
         .max(255)
 });
 

@@ -6,6 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="75d75152-f342-4265-bfdf-c405a32bd14d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/development.env" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/development.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/production.env" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/production.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/test.env" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/test.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/message/message.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/message/message.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/sendMail.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/sendMail.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/blog.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/blog.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/v1/package.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/package.router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/v1/user.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/user.router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/validators/blog.validator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/validators/blog.validator.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +120,11 @@
       <workItem from="1685361102447" duration="4938000" />
       <workItem from="1685449560963" duration="9808000" />
       <workItem from="1685476077033" duration="1078000" />
-      <workItem from="1685534371643" duration="20000" />
+      <workItem from="1685534371643" duration="3950000" />
+      <workItem from="1685633979445" duration="779000" />
+      <workItem from="1685901787839" duration="854000" />
+      <workItem from="1686148211739" duration="19000" />
+      <workItem from="1686148254958" duration="181000" />
     </task>
     <servers />
   </component>

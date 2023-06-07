@@ -16,15 +16,15 @@ export const createMessage = async (req: AuthReq, res: Response) =>
         return res.status(201)
             .json({
                 success: true,
-                message: 'Message sent successfully',
+                message: "Message sent successfully",
                 data: createdMessage
             });
 
     } catch (error) {
-        return res.status(201)
+        return res.status(500)
             .json({
-                success: true,
-                message: 'Failed to create a message !',
+                success: false,
+                message: "Failed to send a message !",
             });
     }
 };
@@ -46,7 +46,7 @@ export const getMessages = async (req: AuthReq, res: Response) =>
         return res.status(200)
             .json({
                 success: true,
-                message: 'Messages retrieved successfully',
+                message: "Messages retrieved successfully",
                 messages: messages,
             });
 
@@ -54,7 +54,7 @@ export const getMessages = async (req: AuthReq, res: Response) =>
         return res.status(500)
             .json({
                 success: false,
-                message: 'Failed to retrieve messages',
+                message: "Failed to retrieve messages",
             });
     }
 };
@@ -64,12 +64,12 @@ export const deleteMessage = async (req: AuthReq, res: Response) =>
 {
     try {
         const messageId = req.query.messageId;
-        const message = await Message.findById(messageId)
+        const message = await Message.findById(messageId);
         if (!message) {
             return res.status(404)
                 .json({
                     success: true,
-                    message: 'Message not found successfully',
+                    message: "Message not found successfully",
                 });
         }
 
@@ -77,14 +77,14 @@ export const deleteMessage = async (req: AuthReq, res: Response) =>
         return res.status(204)
             .json({
                 success: true,
-                message: 'Message deleted successfully',
+                message: "Message deleted successfully",
             });
 
     } catch (error) {
         return res.status(500)
             .json({
                 success: true,
-                message: 'Failed to delete the message !',
+                message: "Failed to delete the message !",
             });
     }
 };

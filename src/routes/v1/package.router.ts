@@ -17,26 +17,28 @@ import {
 
 const packageRouter = Router();
 
+packageRouter.use(authUser);
+
 packageRouter
     .route("/all")
-    .all(authUser, getPackages)
+    .all(getPackages)
     .get();
 
 packageRouter
     .route("/add")
-    .all(authUser, authAdmins([Roles.ROOT, Roles.ADMIN]),
+    .all(authAdmins([Roles.ROOT, Roles.ADMIN]),
         validator(createPackageSchema, Req.body), addPackage)
     .post();
 
 packageRouter
     .route("/update")
-    .all(authUser, authAdmins([Roles.ROOT, Roles.ADMIN]),
+    .all(authAdmins([Roles.ROOT, Roles.ADMIN]),
         validator(updatePackageSchema, Req.body), updatePackage)
     .patch();
 
 packageRouter
     .route("/delete")
-    .all(authUser, authAdmins([Roles.ROOT, Roles.ADMIN]),
+    .all(authAdmins([Roles.ROOT, Roles.ADMIN]),
         validator(deletePackageSchema, Req.query), deletePackage)
     .delete();
 
