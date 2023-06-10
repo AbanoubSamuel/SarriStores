@@ -3,7 +3,7 @@ import {authAdmins, checkRole} from "../../middlewares/access.service";
 import {authUser} from "../../middlewares/auth.service";
 import {
     addPackageToUser,
-    addStoreToUser,
+    addStoreToUser, createAdmin, createSubAdmin,
     deleteStoreFromUser,
     deleteUser,
     getMe,
@@ -63,7 +63,16 @@ userRouter
 userRouter
     .route("/store/delete")
     .all(authAdmins([Roles.ROOT, Roles.ADMIN, Roles.SUBADMIN]), deleteStoreFromUser)
+    .delete();
+
+
+userRouter
+    .route("/admin/add")
+    .all(authAdmins([Roles.ROOT, Roles.ADMIN]), createAdmin)
     .post();
 
-
+userRouter
+    .route("/subadmin/add")
+    .all(authAdmins([Roles.ROOT, Roles.ADMIN]), createSubAdmin)
+    .post();
 export default userRouter;

@@ -28,13 +28,25 @@ export const createSubAdmin = async (req: AuthReq, res: Response, next: NextFunc
             data: createdUser
         });
     } catch (error) {
-        next(error);
+        console.error(error);
+        return res.status(500).send({
+            success: false,
+            message: "An error occurred while creating the admin"
+        });
     }
 };
 
 export const createAdmin = async (req: AuthReq, res: Response) =>
 {
     try {
+        const {email} = req.body;
+        const existingUser = await User.findOne({email: email});
+        if (existingUser) {
+            return res.status(409).json({
+                success: false,
+                message: "User with this email already exists"
+            });
+        }
         const admin = await User.create({
             ...req.body,
             role: Roles.ADMIN
