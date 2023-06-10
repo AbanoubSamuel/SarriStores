@@ -31,7 +31,7 @@ export const createSubAdmin = async (req: AuthReq, res: Response, next: NextFunc
         console.error(error);
         return res.status(500).send({
             success: false,
-            message: "An error occurred while creating the admin"
+            message: "An error occurred while creating the subadmin"
         });
     }
 };
@@ -268,6 +268,7 @@ export const getUsers = async (req: AuthReq, res: Response) =>
             success: true,
             message: "Users fetched successfully",
             users: users,
+            count: count,
             page: page,
             totalPages: totalPages,
         });

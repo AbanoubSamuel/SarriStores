@@ -75,4 +75,5 @@ userRouter
     .route("/subadmin/add")
     .all(authAdmins([Roles.ROOT, Roles.ADMIN]), createSubAdmin)
     .post();
+
 export default userRouter;
