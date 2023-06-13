@@ -1,7 +1,6 @@
 import { Blog } from "../../models/blog.model";
 import { Response } from "express";
 import { AuthReq } from "../../middlewares/auth.service";
-import { Message } from "../../models/message.model";
 
 
 export const getBlogs = async (req: AuthReq, res: Response) =>
@@ -41,6 +40,7 @@ export const getBlogs = async (req: AuthReq, res: Response) =>
             });
     }
 };
+
 export const createBlog = async (req: AuthReq, res: Response) =>
 {
     try {
@@ -65,7 +65,6 @@ export const createBlog = async (req: AuthReq, res: Response) =>
             });
     }
 };
-
 
 export const updateBlog = async (req: AuthReq, res: Response) =>
 {
@@ -98,7 +97,6 @@ export const updateBlog = async (req: AuthReq, res: Response) =>
     }
 };
 
-
 export const deleteBlog = async (req: AuthReq, res: Response) =>
 {
     try {
@@ -114,7 +112,7 @@ export const deleteBlog = async (req: AuthReq, res: Response) =>
 
         // Delete the blog with the id from req.query
         const deletedBlog = await blog.deleteOne()
-        return res.status(201).json({
+        return res.status(204).json({
             success: true,
             message: 'Blog deleted successfully',
             blog: deletedBlog,

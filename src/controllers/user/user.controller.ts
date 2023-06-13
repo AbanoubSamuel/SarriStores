@@ -7,34 +7,6 @@ import {Store} from "../../models/store.model";
 import bcrypt from "bcryptjs";
 import {ObjectId} from "mongodb";
 
-export const createSubAdmin = async (req: AuthReq, res: Response, next: NextFunction) =>
-{
-    try {
-        const {email} = req.body;
-        const existingUser = await User.findOne({email: email});
-        if (existingUser) {
-            return res.status(409).json({
-                success: false,
-                message: "User with this email already exists"
-            });
-        }
-        const createdUser = await User.create({
-            ...req.body,
-            role: Roles.SUBADMIN
-        });
-        res.status(201).json({
-            success: true,
-            message: "Super admin created successfully",
-            data: createdUser
-        });
-    } catch (error) {
-        console.error(error);
-        return res.status(500).send({
-            success: false,
-            message: "An error occurred while creating the subadmin"
-        });
-    }
-};
 
 export const createAdmin = async (req: AuthReq, res: Response) =>
 {
@@ -49,7 +21,6 @@ export const createAdmin = async (req: AuthReq, res: Response) =>
         }
         const admin = await User.create({
             ...req.body,
-            role: Roles.ADMIN
         });
         return res.status(201).send({
             success: true,
@@ -57,7 +28,6 @@ export const createAdmin = async (req: AuthReq, res: Response) =>
             message: "admin is created successfully"
         });
     } catch (error) {
-        console.error(error);
         return res.status(500).send({
             success: false,
             message: "An error occurred while creating the admin"
@@ -242,17 +212,15 @@ export const getUserById = async (req: AuthReq, res: Response) =>
     }
 };
 
-export const getUsers = async (req: AuthReq, res: Response) =>
-{
+export const getUsers = async (req: AuthReq, res: Response) => {
     try {
-
         const page = parseInt(req.query.page as string) || 1; // Current page number
         const limit = parseInt(req.query.limit as string) || 10; // Number of documents to fetch per page
 
-        const count = await User.countDocuments();
+        const count = await User.countDocuments({ role: "user" }); // Count only users with role "user"
         const totalPages = Math.ceil(count / limit);
 
-        const users = await User.find({})
+        const users = await User.find({ role: "user" }) // Find only users with role "user"
             .select("-password")
             .skip((page - 1) * limit)
             .limit(limit);
@@ -279,6 +247,46 @@ export const getUsers = async (req: AuthReq, res: Response) =>
         });
     }
 };
+
+export const getAdmins = async (req: AuthReq, res: Response) => {
+    try {
+        const page = parseInt(req.query.page as string) || 1; // Current page number
+        const limit = parseInt(req.query.limit as string) || 10; // Number of documents to fetch per page
+
+        const roles = ["admin", "subadmin"]; // Roles to filter
+
+        const count = await User.countDocuments({ role: { $in: roles } }); // Count users with roles in the specified array
+        const totalPages = Math.ceil(count / limit);
+
+        const admins = await User.find({ role: { $in: roles } }) // Find users with roles in the specified array
+            .select("-password")
+            .skip((page - 1) * limit)
+            .limit(limit);
+
+        if (admins.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "Users not found",
+            });
+        }
+
+        return res.json({
+            success: true,
+            message: "Users fetched successfully",
+            admins: admins,
+            count: count,
+            page: page,
+            totalPages: totalPages,
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Failed to fetch users",
+        });
+    }
+};
+
+
 
 export const addPackageToUser = async (req: AuthReq, res: Response) =>
 {
