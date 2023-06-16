@@ -42,7 +42,7 @@ userRouter
 
 userRouter
     .route("/delete")
-    .all(authAdmins([Roles.ROOT, Roles.ADMIN, Roles.SUBADMIN]), deleteUser)
+    .all(authAdmins([Roles.ROOT, Roles.ADMIN]), deleteUser)
     .delete();
 
 userRouter

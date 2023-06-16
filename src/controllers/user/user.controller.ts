@@ -212,15 +212,16 @@ export const getUserById = async (req: AuthReq, res: Response) =>
     }
 };
 
-export const getUsers = async (req: AuthReq, res: Response) => {
+export const getUsers = async (req: AuthReq, res: Response) =>
+{
     try {
         const page = parseInt(req.query.page as string) || 1; // Current page number
         const limit = parseInt(req.query.limit as string) || 10; // Number of documents to fetch per page
 
-        const count = await User.countDocuments({ role: "user" }); // Count only users with role "user"
+        const count = await User.countDocuments({role: "user"}); // Count only users with role "user"
         const totalPages = Math.ceil(count / limit);
 
-        const users = await User.find({ role: "user" }) // Find only users with role "user"
+        const users = await User.find({role: "user"}) // Find only users with role "user"
             .select("-password")
             .skip((page - 1) * limit)
             .limit(limit);
@@ -232,7 +233,7 @@ export const getUsers = async (req: AuthReq, res: Response) => {
             });
         }
 
-        return res.json({
+        return res.status(200).json({
             success: true,
             message: "Users fetched successfully",
             users: users,
@@ -248,17 +249,18 @@ export const getUsers = async (req: AuthReq, res: Response) => {
     }
 };
 
-export const getAdmins = async (req: AuthReq, res: Response) => {
+export const getAdmins = async (req: AuthReq, res: Response) =>
+{
     try {
         const page = parseInt(req.query.page as string) || 1; // Current page number
         const limit = parseInt(req.query.limit as string) || 10; // Number of documents to fetch per page
 
         const roles = ["admin", "subadmin"]; // Roles to filter
 
-        const count = await User.countDocuments({ role: { $in: roles } }); // Count users with roles in the specified array
+        const count = await User.countDocuments({role: {$in: roles}}); // Count users with roles in the specified array
         const totalPages = Math.ceil(count / limit);
 
-        const admins = await User.find({ role: { $in: roles } }) // Find users with roles in the specified array
+        const admins = await User.find({role: {$in: roles}}) // Find users with roles in the specified array
             .select("-password")
             .skip((page - 1) * limit)
             .limit(limit);
@@ -285,7 +287,6 @@ export const getAdmins = async (req: AuthReq, res: Response) => {
         });
     }
 };
-
 
 
 export const addPackageToUser = async (req: AuthReq, res: Response) =>
