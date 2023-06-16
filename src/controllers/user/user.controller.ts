@@ -272,9 +272,9 @@ export const getAdmins = async (req: AuthReq, res: Response) =>
             });
         }
 
-        return res.json({
+        return res.status(200).json({
             success: true,
-            message: "Users fetched successfully",
+            message: "Admins fetched successfully",
             admins: admins,
             count: count,
             page: page,
@@ -287,7 +287,6 @@ export const getAdmins = async (req: AuthReq, res: Response) =>
         });
     }
 };
-
 
 export const addPackageToUser = async (req: AuthReq, res: Response) =>
 {
