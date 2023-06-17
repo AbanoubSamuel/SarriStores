@@ -1,7 +1,7 @@
 import {Router} from "express";
 import {
     addPackage,
-    deletePackage,
+    deletePackage, getPackageById,
     getPackages,
     updatePackage
 } from "../../controllers/package/package.controller";
@@ -18,6 +18,12 @@ import {
 const packageRouter = Router();
 
 packageRouter.use(authUser);
+
+
+packageRouter
+    .route("/")
+    .all(getPackageById)
+    .get();
 
 packageRouter
     .route("/all")

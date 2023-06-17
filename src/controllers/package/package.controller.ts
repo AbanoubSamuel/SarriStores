@@ -53,7 +53,27 @@ export const getPackages = async (req: AuthReq, res: Response) =>
             });
     }
 };
+export const getPackageById = async (req: AuthReq, res: Response) =>
+{
+    try {
+        const packageId = req.query.packageId;
+        const foundPackage = await Package.findById(packageId);
 
+        return res.status(200)
+            .json({
+                success: true,
+                message: "Package retrieved successfully",
+                package: foundPackage,
+            });
+
+    } catch (error) {
+        return res.status(500)
+            .json({
+                success: false,
+                message: "Failed to retrieve package"
+            });
+    }
+};
 export const updatePackage = async (req: AuthReq, res: Response) =>
 {
     try {
