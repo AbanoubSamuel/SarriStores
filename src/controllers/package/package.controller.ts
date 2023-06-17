@@ -56,8 +56,16 @@ export const getPackages = async (req: AuthReq, res: Response) =>
 export const getPackageById = async (req: AuthReq, res: Response) =>
 {
     try {
-        const packageId = req.query.packageId;
+        const packageId = req.query.packageId as string;
         const foundPackage = await Package.findById(packageId);
+        if (!packageId)
+        {
+            return res.status(404)
+                .json({
+                    success: false,
+                    message: "Package not found",
+                });
+        }
 
         return res.status(200)
             .json({

@@ -21,7 +21,7 @@ packageRouter.use(authUser);
 
 
 packageRouter
-    .route("")
+    .route("/get")
     .all(getPackageById)
     .get();
 
