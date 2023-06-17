@@ -116,8 +116,7 @@ export const deletePackage = async (req: AuthReq, res: Response) =>
                 message: "Package was not found"
             });
         }
-        const deletedPackage = await pack.deleteOne();
-        return res.status(201).json({
+        return res.status(202).json({
             success: true,
             message: "Package deleted successfully"
         });

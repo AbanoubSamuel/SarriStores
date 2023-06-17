@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75d75152-f342-4265-bfdf-c405a32bd14d" name="Changes" comment="">
+    <list default="true" id="75d75152-f342-4265-bfdf-c405a32bd14d" name="Changes" comment="add getPackageById endpoint">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/package/package.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/package/package.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/v1/package.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/package.router.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,8 +125,16 @@
       <workItem from="1686982852352" duration="83000" />
       <workItem from="1687012802331" duration="191000" />
       <workItem from="1687022526826" duration="738000" />
-      <workItem from="1687023290091" duration="32000" />
+      <workItem from="1687023290091" duration="86000" />
     </task>
+    <task id="LOCAL-00001" summary="add getPackageById endpoint">
+      <created>1687023343073</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1687023343073</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -135,5 +142,9 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.eslintignore" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add getPackageById endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="add getPackageById endpoint" />
   </component>
 </project>
