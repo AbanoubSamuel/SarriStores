@@ -1,8 +1,7 @@
-import {NextFunction, Response} from "express";
+import {Response} from "express";
 import {Package} from "../../models/package.model";
 import {User} from "../../models/user.model";
 import {AuthReq} from "../../middlewares/auth.service";
-import {Roles} from "../../types/enums";
 import {Store} from "../../models/store.model";
 import bcrypt from "bcryptjs";
 import {ObjectId} from "mongodb";
@@ -181,13 +180,17 @@ export const getMe = async (req: AuthReq, res: Response) =>
     const user = await User.findOne({_id: userId}).select("-password")
         .populate("stores")
         .populate("package");
-    if (!user)
+    if (!user) {
         return res
-            .status(404)
-            .send({success: false, message: "user with this id not found"});
+            .status(404).send({
+                success: false,
+                message: "user with this id not found"
+            });
+    }
+
     return res.send({
         success: true,
-        data: user
+        user: user
     });
 };
 
