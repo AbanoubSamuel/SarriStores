@@ -1,15 +1,16 @@
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import mongoose, { Document, Model, model, Schema } from 'mongoose';
-import { Roles } from '../types/enums';
-import { IStore, Store } from './store.model';
-import { ObjectId } from 'mongodb';
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import mongoose, {Document, Model, model, Schema} from "mongoose";
+import {Roles} from "../types/enums";
+import {Store} from "./store.model";
+import {ObjectId} from "mongodb";
 
 export interface IUser extends Document {
     name: string;
     email: string;
     password: string;
     role: Roles;
+    createdAt: Date;
     active: Boolean;
     phone: string;
     stores: ObjectId[];
@@ -45,31 +46,34 @@ const userSchema = new Schema(
         stores: [
             {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'Store'
+                ref: "Store"
             }
         ],
         package:
             {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'Package'
-            }
-
+                ref: "Package"
+            },
+        createdAt: {
+            type: Date,
+            default: Date.now
+        }
     },
 
     {timestamps: true}
 );
 
 // Hash password
-userSchema.pre('save', async function (next)
+userSchema.pre("save", async function (next)
 {
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
     next();
 });
 
-userSchema.pre('remove', async function (next)
+userSchema.pre("remove", async function (next)
 {
-    console.log('user pre delete middleware');
+    console.log("user pre delete middleware");
     const user = this as any;
     // Delete all stores associated with the user
     await Store.deleteMany({user: user._id});
@@ -96,4 +100,4 @@ userSchema.methods.createToken = function ()
     );
 };
 
-export const User: Model<IUser> = model<IUser>('User', userSchema);
+export const User: Model<IUser> = model<IUser>("User", userSchema);

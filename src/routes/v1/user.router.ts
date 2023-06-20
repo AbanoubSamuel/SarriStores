@@ -6,7 +6,7 @@ import {
     addStoreToUser, createAdmin,
     deleteStoreFromUser,
     deleteUser, getAdmins,
-    getMe,
+    getMe, getNewUsers,
     getStores,
     getUserById,
     getUsers,
@@ -72,6 +72,11 @@ userRouter
 
 userRouter.route("/admin")
     .all(authAdmins([Roles.ROOT, Roles.ADMIN]), getAdmins)
+    .get();
+
+userRouter
+    .route("/new")
+    .all(authAdmins([Roles.ROOT, Roles.ADMIN, Roles.SUBADMIN]), getNewUsers)
     .get();
 
 export default userRouter;

@@ -398,3 +398,28 @@ export const getStores = async (req: AuthReq, res: Response) =>
         });
     }
 };
+
+export const getNewUsers = async (req: AuthReq, res: Response) =>
+{
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+    try {
+        const user = await User.find({
+            createdAt: {$gte: thirtyDaysAgo},
+        }).exec();
+
+        return res.status(200).json({
+            success: true,
+            message: "Users fetched successfully",
+            users: user,
+        });
+    } catch (error) {
+        // Handle any errors here
+        console.error("Error retrieving users:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Failed to retrieve users",
+        });
+    }
+};
