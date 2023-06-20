@@ -401,25 +401,45 @@ export const getStores = async (req: AuthReq, res: Response) =>
 
 export const getNewUsers = async (req: AuthReq, res: Response) =>
 {
-    const thirtyDaysAgo = new Date();
-    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-
     try {
-        const user = await User.find({
-            createdAt: {$gte: thirtyDaysAgo},
-        }).exec();
+        const page = parseInt(req.query.page as string) || 1; // Current page number
+        const limit = parseInt(req.query.limit as string) || 10; // Number of documents to fetch per page
+        const thirtyDaysAgo = new Date();
+        thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+
+        const count = await User.countDocuments({role: "user", createdAt: {$gte: thirtyDaysAgo}}); // Count only users with role "user"
+        const totalPages = Math.ceil(count / limit);
+
+        const users = await User.find({
+            role: "user",
+            createdAt: {$gte: thirtyDaysAgo}
+        }) // Find only users with role "user"
+            .select("-password")
+            .skip((page - 1) * limit)
+            .limit(limit);
+
+        if (users.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "Users not found",
+            });
+        }
 
         return res.status(200).json({
             success: true,
             message: "Users fetched successfully",
-            users: user,
+            users: users,
+            count: count,
+            page: page,
+            totalPages: totalPages,
         });
     } catch (error) {
-        // Handle any errors here
-        console.error("Error retrieving users:", error);
         return res.status(500).json({
             success: false,
-            message: "Failed to retrieve users",
+            message: "Failed to fetch users",
         });
     }
 };
+
+
