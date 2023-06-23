@@ -15,6 +15,8 @@ import {
 import {Roles} from "../../types/enums";
 import {Req, validator} from "../../middlewares/validator.service";
 import {updateUserSchecma} from "../../validators/user.validator";
+import {uploadFileSchema} from "../../validators/file.validator";
+import {upload} from "../../middlewares/uploads.service";
 
 const userRouter = Router();
 
@@ -47,7 +49,8 @@ userRouter
 
 userRouter
     .route("/store/add")
-    .all(authAdmins([Roles.ROOT, Roles.ADMIN, Roles.SUBADMIN]), addStoreToUser)
+    .all(authAdmins([Roles.ROOT, Roles.ADMIN, Roles.SUBADMIN]),
+        validator(uploadFileSchema, Req.file), upload.single("image"), addStoreToUser)
     .post();
 
 userRouter

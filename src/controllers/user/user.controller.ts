@@ -86,33 +86,26 @@ export const updateUser = async (req: AuthReq, res: Response) =>
 export const addStoreToUser = async (req: AuthReq, res: Response) =>
 {
     const storeData = {...req.body};
-    const newStore = new Store({...storeData});
+    const newStore = new Store({
+        ...storeData,
+        image: `/uploads/${req.file?.filename}`
+    });
     const userId = req.query.userId as string;
 
     if (!userId) {
-        res.status(400).json({
+        return res.status(400).json({
+            status: false,
             message: "You have to provide userId"
         });
-        return;
     }
 
     const user = await User.findById(userId);
 
     if (user) {
-        const image = req.body.image; // Assuming the uploaded file is available in req.file
-
-        if (!image) {
-            await newStore.deleteOne();
-            return res.status(400).json({
-                success: false,
-                message: "Image path not found in the request"
-            });
-        }
-
         try {
             // Make a POST request to the image upload route
             // Set the image filename in the store document
-            newStore.image = image;
+            newStore.image = `/uploads/${req.file?.filename}`;
             newStore.user = user._id; // Set the user property with the user ID
             await newStore.save();
         } catch (error) {
