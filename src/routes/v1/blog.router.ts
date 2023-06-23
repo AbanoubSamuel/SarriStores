@@ -6,6 +6,7 @@ import {createBlog, deleteBlog, getBlogs, updateBlog} from "../../controllers/bl
 import {Req, validator} from "../../middlewares/validator.service";
 import {createBlogSchema, deleteBlogSchema, updateBlogSchema} from "../../validators/blog.validator";
 import {upload} from "../../middlewares/uploads.service";
+import {uploadFileSchema} from "../../validators/file.validator";
 
 const blogRouter = Router();
 
@@ -23,7 +24,7 @@ blogRouter
 blogRouter
     .route("/create")
     .all(authUser, authAdmins([Roles.ROOT, Roles.ADMIN, Roles.SUBADMIN]),
-        upload.single("image"),
+        validator(uploadFileSchema, Req.file), upload.single("image"),
         validator(createBlogSchema, Req.body), createBlog)
     .post();
 
