@@ -3,6 +3,7 @@ import {NextFunction, Request, Response} from "express";
 export enum Req {
     body = "body",
     query = "query",
+    file = "file"
 }
 
 export const validator =

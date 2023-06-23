@@ -1,6 +1,8 @@
-import { Blog } from "../../models/blog.model";
-import { Response } from "express";
-import { AuthReq } from "../../middlewares/auth.service";
+import {Blog} from "../../models/blog.model";
+import {Response} from "express";
+import {AuthReq} from "../../middlewares/auth.service";
+import {type} from "os";
+import {upload} from "../../middlewares/uploads.service";
 
 
 export const getBlogs = async (req: AuthReq, res: Response) =>
@@ -16,19 +18,18 @@ export const getBlogs = async (req: AuthReq, res: Response) =>
             .skip(skip)
             .limit(limit);
 
-        if(blogs.length == 0)
-        {
+        if (blogs.length == 0) {
             return res.status(404)
                 .json({
                     success: true,
-                    message: 'No blogs found',
+                    message: "No blogs found",
                 });
         }
 
         return res.status(200)
             .json({
                 success: true,
-                message: 'Blogs retrieved successfully',
+                message: "Blogs retrieved successfully",
                 blogs: blogs,
             });
 
@@ -36,16 +37,18 @@ export const getBlogs = async (req: AuthReq, res: Response) =>
         return res.status(500)
             .json({
                 success: false,
-                blogs: 'Failed to retrieve blogs',
+                blogs: "Failed to retrieve blogs",
             });
     }
 };
 
 export const createBlog = async (req: AuthReq, res: Response) =>
 {
+
     try {
         const blog = new Blog({
             ...req.body,
+            image: `/uploads/${req.file?.filename}`
         });
 
         const createdBlog = await blog.save();
@@ -53,15 +56,16 @@ export const createBlog = async (req: AuthReq, res: Response) =>
         return res.status(201)
             .json({
                 success: true,
-                message: 'Blog create successfully',
+                message: "Blog create successfully",
                 blog: createdBlog
             });
 
     } catch (error) {
+        console.log(error);
         return res.status(400)
             .json({
                 success: false,
-                message: 'Failed to create a blog !',
+                message: "Failed to create a blog !",
             });
     }
 };
@@ -75,7 +79,7 @@ export const updateBlog = async (req: AuthReq, res: Response) =>
         if (!blog) {
             return res.status(409).json({
                 success: false,
-                message: 'Blog was not found',
+                message: "Blog was not found",
             });
         }
 
@@ -86,13 +90,13 @@ export const updateBlog = async (req: AuthReq, res: Response) =>
         const updatedBlog = await blog.save();
         return res.status(201).json({
             success: true,
-            message: 'Blog updated successfully',
+            message: "Blog updated successfully",
             blog: updatedBlog,
         });
     } catch (error) {
         return res.status(400).json({
             success: false,
-            message: 'Failed to update the blog!',
+            message: "Failed to update the blog!",
         });
     }
 };
@@ -106,21 +110,21 @@ export const deleteBlog = async (req: AuthReq, res: Response) =>
         if (!blog) {
             return res.status(409).json({
                 success: false,
-                message: 'Blog not found',
+                message: "Blog not found",
             });
         }
 
         // Delete the blog with the id from req.query
-        const deletedBlog = await blog.deleteOne()
+        const deletedBlog = await blog.deleteOne();
         return res.status(204).json({
             success: true,
-            message: 'Blog deleted successfully',
+            message: "Blog deleted successfully",
             blog: deletedBlog,
         });
     } catch (error) {
         return res.status(400).json({
             success: false,
-            message: 'Failed to delete the blog!',
+            message: "Failed to delete the blog!",
         });
     }
 };
