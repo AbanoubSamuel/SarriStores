@@ -1,5 +1,5 @@
-import { ObjectId } from 'mongodb';
-import mongoose, { Document, Model, model, Schema } from 'mongoose';
+import {ObjectId} from "mongodb";
+import mongoose, {Document, Model, model, Schema} from "mongoose";
 
 export interface IStore extends Document {
     name: string;
@@ -16,11 +16,12 @@ const storeSchema = new Schema({
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: "User",
         required: true
     },
     image: {
-        type: String
+        type: String,
+        required: true
     },
     createdAt: {
         type: Date,
@@ -28,4 +29,4 @@ const storeSchema = new Schema({
     }
 });
 
-export const Store: Model<IStore> = model<IStore>('Store', storeSchema);
+export const Store: Model<IStore> = model<IStore>("Store", storeSchema);
