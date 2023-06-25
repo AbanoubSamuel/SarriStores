@@ -2,7 +2,7 @@ import {Response, Router} from "express";
 import {authAdmins} from "../../middlewares/access.service";
 import {AuthReq, authUser} from "../../middlewares/auth.service";
 import {Roles} from "../../types/enums";
-import {createBlog, deleteBlog, getBlogs, updateBlog} from "../../controllers/blog/createBlog";
+import {createBlog, deleteBlog, getBlogs, updateBlog} from "../../controllers/blog/blog.controler";
 import {Req, validator} from "../../middlewares/validator.service";
 import {createBlogSchema, deleteBlogSchema, updateBlogSchema} from "../../validators/blog.validator";
 import {upload} from "../../middlewares/uploads.service";

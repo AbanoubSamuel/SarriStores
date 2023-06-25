@@ -166,7 +166,7 @@ export const deleteStoreFromUser = async (req: AuthReq, res: Response) =>
         });
     }
 };
-// Delete the newly created store if the user doesn't exist
+
 export const getMe = async (req: AuthReq, res: Response) =>
 {
     const userId = req.user?._id;

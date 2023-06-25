@@ -58,8 +58,7 @@ export const getPackageById = async (req: AuthReq, res: Response) =>
     try {
         const packageId = req.query.packageId as string;
         const foundPackage = await Package.findById(packageId);
-        if (!packageId)
-        {
+        if (!packageId) {
             return res.status(404)
                 .json({
                     success: false,
@@ -124,9 +123,12 @@ export const deletePackage = async (req: AuthReq, res: Response) =>
                 message: "Package was not found"
             });
         }
+
+        const deletedPack = await pack.deleteOne();
         return res.status(202).json({
             success: true,
-            message: "Package deleted successfully"
+            message: "Package deleted successfully",
+            package: deletedPack
         });
 
     } catch (error) {
