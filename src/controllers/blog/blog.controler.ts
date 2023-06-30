@@ -1,8 +1,7 @@
 import {Blog} from "../../models/blog.model";
 import {Response} from "express";
 import {AuthReq} from "../../middlewares/auth.service";
-import {type} from "os";
-import {upload} from "../../middlewares/uploads.service";
+
 
 
 export const getBlogs = async (req: AuthReq, res: Response) =>
