@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75d75152-f342-4265-bfdf-c405a32bd14d" name="Changes" comment="Updated baseUrl">
-      <change afterPath="$PROJECT_DIR$/src/controllers/query/query.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/query.model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/v1/query.router.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/validators/query.validator.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/SarriStores.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SarriStores.iml" afterDir="false" />
+    <list default="true" id="75d75152-f342-4265-bfdf-c405a32bd14d" name="Changes" comment="Added query model">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/v1/blog.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/blog.router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/v1/user.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/user.router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/validators/user.validator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/validators/user.validator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/auth/login.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/auth/auth.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/v1/auth.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/auth.router.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +156,7 @@
       <workItem from="1688152165164" duration="949000" />
       <workItem from="1688153206500" duration="1516000" />
       <workItem from="1688353244503" duration="3195000" />
-      <workItem from="1688546927646" duration="67000" />
+      <workItem from="1688546927646" duration="930000" />
     </task>
     <task id="LOCAL-00001" summary="add getPackageById endpoint">
       <created>1687023343073</created>
@@ -254,7 +247,15 @@
       <option name="project" value="LOCAL" />
       <updated>1688152955898</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added query model">
+      <option name="closed" value="true" />
+      <created>1688547009005</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1688547009005</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,6 +287,7 @@
     <MESSAGE value="Added image handler to addStoreToUser" />
     <MESSAGE value="Fixed bug in delete package" />
     <MESSAGE value="Updated baseUrl" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated baseUrl" />
+    <MESSAGE value="Added query model" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added query model" />
   </component>
 </project>
