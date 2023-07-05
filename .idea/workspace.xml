@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75d75152-f342-4265-bfdf-c405a32bd14d" name="Changes" comment="add getPackageById endpoint">
+    <list default="true" id="75d75152-f342-4265-bfdf-c405a32bd14d" name="Changes" comment="Updated baseUrl">
+      <change afterPath="$PROJECT_DIR$/src/controllers/query/query.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/query.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/v1/query.router.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validators/query.validator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/SarriStores.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SarriStores.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/package/package.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/package/package.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/v1/blog.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/blog.router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/v1/user.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/user.router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/validators/user.validator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/validators/user.validator.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,12 +24,17 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="tsconfig.json" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -39,6 +52,7 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
@@ -49,15 +63,18 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/media/My_Data/Work/Sarri Technology/SarriStores/dist/data&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;18.16.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;18.16.0&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/media/My_Data/Work/Sarri Technology/SarriStores&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.typescriptcompiler&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/home/ilinux/.nvm/versions/node/v18.16.0/lib/node_modules/typescript/lib&quot;,
+    &quot;typescript.add.unambiguous.imports.on.the.fly&quot;: &quot;true&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -125,7 +142,28 @@
       <workItem from="1686982852352" duration="83000" />
       <workItem from="1687012802331" duration="191000" />
       <workItem from="1687022526826" duration="738000" />
-      <workItem from="1687023290091" duration="86000" />
+      <workItem from="1687023290091" duration="903000" />
+      <workItem from="1687027037487" duration="998000" />
+      <workItem from="1687049828558" duration="344000" />
+      <workItem from="1687099342346" duration="37000" />
+      <workItem from="1687099388638" duration="77000" />
+      <workItem from="1687099488278" duration="392000" />
+      <workItem from="1687100185773" duration="668000" />
+      <workItem from="1687100994060" duration="77000" />
+      <workItem from="1687177323834" duration="660000" />
+      <workItem from="1687257166366" duration="35000" />
+      <workItem from="1687268348281" duration="3205000" />
+      <workItem from="1687364885645" duration="602000" />
+      <workItem from="1687437038580" duration="4788000" />
+      <workItem from="1687444412886" duration="599000" />
+      <workItem from="1687548361897" duration="4277000" />
+      <workItem from="1687556459288" duration="6485000" />
+      <workItem from="1687646372545" duration="993000" />
+      <workItem from="1687690627412" duration="442000" />
+      <workItem from="1688152165164" duration="949000" />
+      <workItem from="1688153206500" duration="1516000" />
+      <workItem from="1688353244503" duration="3195000" />
+      <workItem from="1688546927646" duration="67000" />
     </task>
     <task id="LOCAL-00001" summary="add getPackageById endpoint">
       <created>1687023343073</created>
@@ -134,7 +172,89 @@
       <option name="project" value="LOCAL" />
       <updated>1687023343073</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fixed bug in delete pakcage">
+      <created>1687023408297</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1687023408298</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fixed bug in package.router.ts">
+      <created>1687023777762</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1687023777762</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fixed bug in package.router.ts">
+      <created>1687024133703</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1687024133703</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fixed bug in currentUser">
+      <created>1687027392116</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1687027392116</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added getNewUsers function">
+      <created>1687270136932</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1687270136932</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added pagination to getNewUsers function">
+      <created>1687270941350</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1687270941350</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added file upload to createBlog function">
+      <option name="closed" value="true" />
+      <created>1687558263558</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1687558263558</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added file validator">
+      <option name="closed" value="true" />
+      <created>1687558979479</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1687558979479</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added image handler to addStoreToUser">
+      <option name="closed" value="true" />
+      <created>1687564080403</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1687564080403</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Fixed bug in delete package">
+      <option name="closed" value="true" />
+      <created>1687691014463</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1687691014463</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Updated baseUrl">
+      <option name="closed" value="true" />
+      <created>1688152955898</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1688152955898</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -143,8 +263,29 @@
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.eslintignore" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add getPackageById endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="add getPackageById endpoint" />
+    <MESSAGE value="fixed bug in delete pakcage" />
+    <MESSAGE value="fixed bug in package.router.ts" />
+    <MESSAGE value="fixed bug in currentUser" />
+    <MESSAGE value="Added getNewUsers function" />
+    <MESSAGE value="Added pagination to getNewUsers function" />
+    <MESSAGE value="Added file upload to createBlog function" />
+    <MESSAGE value="Added file validator" />
+    <MESSAGE value="Added image handler to addStoreToUser" />
+    <MESSAGE value="Fixed bug in delete package" />
+    <MESSAGE value="Updated baseUrl" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated baseUrl" />
   </component>
 </project>

@@ -23,7 +23,7 @@ export const createUserSchema = Joi.object<IUser>({
         .pattern(/^[0-9]+$/),
 });
 
-export const updateUserSchecma = Joi.object<IUser>({
+export const updateUserSchema = Joi.object<IUser>({
     name: Joi.string()
         .required()
         .min(3)

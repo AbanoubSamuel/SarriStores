@@ -10,7 +10,7 @@ import {uploadFileSchema} from "../../validators/file.validator";
 
 const blogRouter = Router();
 
-blogRouter.use("/SarriStores/api/v1/upload", upload.single("image"), (req: AuthReq, res: Response) =>
+blogRouter.use("/api/v1/upload", upload.single("image"), (req: AuthReq, res: Response) =>
 {
     res.status(200)
         .send({filename: `/uploads/${req.file?.filename}`});
@@ -18,7 +18,7 @@ blogRouter.use("/SarriStores/api/v1/upload", upload.single("image"), (req: AuthR
 
 blogRouter
     .route("/get")
-    .all(authUser, authAdmins([Roles.ROOT, Roles.ADMIN, Roles.SUBADMIN]), getBlogs)
+    .all(authUser, getBlogs)
     .get();
 
 blogRouter

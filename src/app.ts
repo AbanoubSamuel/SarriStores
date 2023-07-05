@@ -13,6 +13,7 @@ import messageRouter from "./routes/v1/message.router";
 import blogRouter from "./routes/v1/blog.router";
 import policyRouter from "./routes/v1/policy.router";
 import aboutRouter from "./routes/v1/about.router";
+import queryRouter from "./routes/v1/query.router";
 
 
 Joi.object = require("joi-objectid")(Joi);
@@ -35,6 +36,7 @@ app.use(errorHandler)
     .use("/api/v1/package", packageRouter)
     .use("/api/v1/policy", policyRouter)
     .use("/api/v1/about", aboutRouter)
+    .use("/api/v1/query", queryRouter)
     .use("/uploads", express.static("./uploads"))
     .all("*", (req: Request, res: Response) =>
         res.status(404)

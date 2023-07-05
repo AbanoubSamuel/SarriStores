@@ -14,7 +14,7 @@ import {
 } from "../../controllers/user/user.controller";
 import {Roles} from "../../types/enums";
 import {Req, validator} from "../../middlewares/validator.service";
-import {updateUserSchecma} from "../../validators/user.validator";
+import {updateUserSchema} from "../../validators/user.validator";
 import {uploadFileSchema} from "../../validators/file.validator";
 import {upload} from "../../middlewares/uploads.service";
 
@@ -34,7 +34,7 @@ userRouter
 
 userRouter
     .route("/update")
-    .all(checkRole, validator(updateUserSchecma, Req.body), updateUser)
+    .all(checkRole, validator(updateUserSchema, Req.body), updateUser)
     .patch();
 
 userRouter
