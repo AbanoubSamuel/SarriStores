@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="75d75152-f342-4265-bfdf-c405a32bd14d" name="Changes" comment="renamed authController">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/blog.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/blog.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/validators/blog.validator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/validators/blog.validator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/blog/blog.controler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/blog/blog.controler.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +157,7 @@
       <workItem from="1688353244503" duration="3195000" />
       <workItem from="1688546927646" duration="1555000" />
       <workItem from="1688633697741" duration="128000" />
-      <workItem from="1688798251703" duration="1315000" />
+      <workItem from="1688798251703" duration="1369000" />
     </task>
     <task id="LOCAL-00001" summary="add getPackageById endpoint">
       <created>1687023343073</created>
@@ -273,7 +272,15 @@
       <option name="project" value="LOCAL" />
       <updated>1688548336482</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="renamed authController">
+      <option name="closed" value="true" />
+      <created>1688800325087</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1688800325087</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

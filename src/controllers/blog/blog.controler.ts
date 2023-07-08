@@ -83,7 +83,6 @@ export const updateBlog = async (req: AuthReq, res: Response) =>
         }
 
         // Update the blog with the data from req.body
-        blog.name = req.body.name;
         blog.text = req.body.text;
 
         const updatedBlog = await blog.save();
