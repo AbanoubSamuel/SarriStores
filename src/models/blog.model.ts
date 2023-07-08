@@ -1,17 +1,12 @@
 import { Document, Model, model, Schema } from 'mongoose';
 
 export interface IBlog extends Document {
-    name: string;
     text: string;
     image: string;
     createdAt: Date;
 }
 
 const blogSchema = new Schema({
-    name: {
-        type: String,
-        required: true
-    },
     text: {
         type: String,
         required: true
