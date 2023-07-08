@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75d75152-f342-4265-bfdf-c405a32bd14d" name="Changes" comment="Added query model">
+    <list default="true" id="75d75152-f342-4265-bfdf-c405a32bd14d" name="Changes" comment="renamed authController">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/auth/login.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/auth/auth.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/v1/auth.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/auth.router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/blog/blog.controler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/blog/blog.controler.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +155,9 @@
       <workItem from="1688152165164" duration="949000" />
       <workItem from="1688153206500" duration="1516000" />
       <workItem from="1688353244503" duration="3195000" />
-      <workItem from="1688546927646" duration="930000" />
+      <workItem from="1688546927646" duration="1555000" />
+      <workItem from="1688633697741" duration="128000" />
+      <workItem from="1688798251703" duration="1369000" />
     </task>
     <task id="LOCAL-00001" summary="add getPackageById endpoint">
       <created>1687023343073</created>
@@ -255,7 +256,31 @@
       <option name="project" value="LOCAL" />
       <updated>1688547009005</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="renamed authController">
+      <option name="closed" value="true" />
+      <created>1688547884035</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1688547884035</updated>
+    </task>
+    <task id="LOCAL-00015" summary="renamed authController">
+      <option name="closed" value="true" />
+      <created>1688548336482</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1688548336482</updated>
+    </task>
+    <task id="LOCAL-00016" summary="renamed authController">
+      <option name="closed" value="true" />
+      <created>1688800325087</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1688800325087</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,6 +313,7 @@
     <MESSAGE value="Fixed bug in delete package" />
     <MESSAGE value="Updated baseUrl" />
     <MESSAGE value="Added query model" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added query model" />
+    <MESSAGE value="renamed authController" />
+    <option name="LAST_COMMIT_MESSAGE" value="renamed authController" />
   </component>
 </project>
