@@ -85,7 +85,7 @@ userSchema.methods.isPasswordsMatched = async function (
     enteredPassword: string
 )
 {
-    return await bcrypt.compare(enteredPassword, this.password);
+    return bcrypt.compare(enteredPassword, this.password);
 };
 
 userSchema.methods.createToken = function ()
