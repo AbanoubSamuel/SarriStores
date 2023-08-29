@@ -17,12 +17,10 @@ import {
 
 const packageRouter = Router();
 
-packageRouter.use(authUser);
-
 
 packageRouter
     .route("/get")
-    .all(getPackageById)
+    .all(authUser, getPackageById)
     .get();
 
 packageRouter
@@ -32,19 +30,19 @@ packageRouter
 
 packageRouter
     .route("/add")
-    .all(authAdmins([Roles.ROOT, Roles.ADMIN]),
+    .all(authUser, authAdmins([Roles.ROOT, Roles.ADMIN]),
         validator(createPackageSchema, Req.body), addPackage)
     .post();
 
 packageRouter
     .route("/update")
-    .all(authAdmins([Roles.ROOT, Roles.ADMIN]),
+    .all(authUser, authAdmins([Roles.ROOT, Roles.ADMIN]),
         validator(updatePackageSchema, Req.body), updatePackage)
     .patch();
 
 packageRouter
     .route("/delete")
-    .all(authAdmins([Roles.ROOT, Roles.ADMIN]),
+    .all(authUser, authAdmins([Roles.ROOT, Roles.ADMIN]),
         validator(deletePackageSchema, Req.query), deletePackage)
     .delete();
 

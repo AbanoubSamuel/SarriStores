@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { User } from '../../models/user.model';
-import {AuthReq} from "../../middlewares/auth.service";
 import {Roles} from "../../types/enums";
 
 

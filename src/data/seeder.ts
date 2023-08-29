@@ -1,4 +1,3 @@
-import * as colors from "colors";
 import {User} from "../models/user.model";
 import mongoose from "mongoose";
 import *  as dotenv from "dotenv";
@@ -11,8 +10,8 @@ import * as fs from "fs";
 
 dotenv.config({path: path.resolve(__dirname, `../config/development.env`)});
 
-const Users = JSON.parse(fs.readFileSync("users.json", "utf-8"));
-const Packages = JSON.parse(fs.readFileSync("packages.json", "utf-8"));
+const users = JSON.parse(fs.readFileSync("users.json", "utf-8"));
+const packages = JSON.parse(fs.readFileSync("packages.json", "utf-8"));
 const aboutUs = JSON.parse(fs.readFileSync("aboutUs.json", "utf-8"));
 const policy = JSON.parse(fs.readFileSync("privacyPolicy.json", "utf-8"));
 //  Pushing data to db
@@ -20,7 +19,6 @@ const pushJsonData = async (data: any, collection: mongoose.Model<any>) =>
 {
     await collection.create(data);
 };
-
 
 //Delete all data
 const deleteAllModelData = async (collection: mongoose.Model<any>) =>
@@ -33,8 +31,8 @@ const addAllData = async () =>
     try {
         await Promise.all(
             [
-                await pushJsonData(Users, User),
-                await pushJsonData(Packages, Package),
+                await pushJsonData(users, User),
+                await pushJsonData(packages, Package),
                 await pushJsonData(aboutUs, About),
                 await pushJsonData(policy, Policy),
             ]
