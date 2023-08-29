@@ -11,8 +11,8 @@ import * as fs from "fs";
 dotenv.config({path: path.resolve(__dirname, `../config/development.env`)});
 
 const users = JSON.parse(fs.readFileSync("users.json", "utf-8"));
-const packages = JSON.parse(fs.readFileSync("packages.json", "utf-8"));
 const aboutUs = JSON.parse(fs.readFileSync("aboutUs.json", "utf-8"));
+const packages = JSON.parse(fs.readFileSync("packages.json", "utf-8"));
 const policy = JSON.parse(fs.readFileSync("privacyPolicy.json", "utf-8"));
 //  Pushing data to db
 const pushJsonData = async (data: any, collection: mongoose.Model<any>) =>
